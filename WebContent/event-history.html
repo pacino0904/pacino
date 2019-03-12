@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    <meta charset="UTF-8">
+    <title>欢迎页面-X-admin2.0</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="./css/font.css">
+    <link rel="stylesheet" href="./css/xadmin.css">
+    <script type="text/javascript" src="./JS/jquery-1.3.2.min.js"></script>
+    <script type="text/javascript" src="./lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="./JS/xadmin.js"></script>
+    <script type="text/javascript" src="./JS/event.js"></script>
+  </head>
+  
+  <body>
+    <div class="x-nav">
+      <span class="layui-breadcrumb">
+        <a href="">首页</a>
+        <a href="">事件管理</a>
+        <a><cite>事件历史</cite></a>
+      </span>
+      <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+      <div style="float:right">共有数据:&nbsp;<span id="total"></span>&nbsp;条&nbsp;&nbsp;</div>
+    </div>
+
+	<div class="layui-inline" style="padding:10px 0 0 30px">
+      <input type="text" class="layui-input" id="start-time" style="width:105px;margin-right:10px;float:left" placeholder="开始日期">
+      <input type="text" class="layui-input" id="end-time" style="width:105px;margin-right:10px;float:left" placeholder="结束日期">
+      <input type="text" class="layui-input" style="width:140px;margin-right:10px;float:left" lay-verify="title" autocomplete="off" placeholder="事件发现人(选填)">
+      <input type="text" class="layui-input" style="width:120px;margin-right:10px;float:left" lay-verify="title" autocomplete="off" placeholder="处理人员(选填)">
+      <button class="layui-btn"  id="search" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+    </div>
+
+    <table id="eventHistory" lay-filter="test"></table>
+
+	<script type="text/html" id="barHandle">
+		<a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
+		<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+	</script>
+	<script>
+	layui.use('laydate', function(){
+		  var laydate = layui.laydate;
+		  //常规用法
+		  laydate.render({
+		    elem: '#start-time'
+		  });
+		  
+		  var laydate = layui.laydate;
+		  //常规用法
+		  laydate.render({
+		    elem: '#end-time'
+		  });
+	})
+	
+	
+	//搜索功能，表格重载，需要修改参数
+	var tableIns = table.render({
+		elem: '#eventHistory'
+		,cols: [
+			{field: 'occTime', title: '发生时间', width:160, sort: true, fixed: 'left'}
+		      ,{field: 'locale', title: '发生地点', width:125, sort: true}
+		      ,{field: 'department', title: '专业部门', width:100, sort: true}
+		      ,{field: 'level', title: '严重程度', width:100, sort: true} 
+		      ,{field: 'discPerson', title: '事件发现人', width: 110}
+		      ,{field: 'handlePerson', title: '事件处理参与人员', width: 160}
+		      ,{field: 'effBus', title: '是否影响业务', width: 125, sort: true}
+		      ,{field: 'incidence', title: '影响范围', width: 160}
+		      ,{fixed: 'right', title:'操作', toolbar: '#barHandle', width:150}
+		] //设置表头
+		,url: '/myproject/searchEvent' //设置异步接口
+		,id: 'idTest'
+	}); 
+	tableIns.reload({
+		where: { //设定异步数据接口的额外参数，任意设
+			aaaaaa: 'xxx'
+		    ,bbb: 'yyy'
+		    //…
+		}
+		,page: {
+			curr: 1 //重新从第 1 页开始
+		}
+	});
+	
+	//事件历史初始加载
+	layui.use('table', function(){
+	  var table = layui.table;
+	  table.render({
+	    elem: '#eventHistory'
+	    ,height: 482
+	    ,url: '/myproject/listEvent' //数据接口
+	    ,page: false //开启分页
+	    ,cols: [[ //表头
+	      {field: 'occTime', title: '发生时间', width:160, sort: true, fixed: 'left'}
+	      ,{field: 'locale', title: '发生地点', width:125, sort: true}
+	      ,{field: 'department', title: '专业部门', width:100, sort: true}
+	      ,{field: 'level', title: '严重程度', width:100, sort: true} 
+	      ,{field: 'discPerson', title: '事件发现人', width: 110}
+	      ,{field: 'handlePerson', title: '事件处理参与人员', width: 160}
+	      ,{field: 'effBus', title: '是否影响业务', width: 125, sort: true}
+	      ,{field: 'incidence', title: '影响范围', width: 160}
+	      ,{fixed: 'right', title:'操作', toolbar: '#barHandle', width:150}
+	    ]]
+	  ,done: function(res, curr, count){
+		    $("#total").text(count);
+		  }
+	  });
+	//监听行工具事件
+	  table.on('tool(test)', function(obj){
+	    var data = obj.data;
+	    if(obj.event === 'del'){
+	      layer.confirm('确认删除', function(index){
+	        obj.del();
+	        eventDelete(data.id);
+	        layer.close(index);
+	      });
+	    } else if(obj.event === 'detail'){
+	    	$('#detailUrl', parent.document).attr("_href","event-detail.html?"+data.id);
+	    	$('#detail', parent.document).click();
+	      }
+	  });
+	});
+	
+	$("#search").click(
+		function(){
+			var time1 = $("#start-time").val();
+			var time2 = $("#end-time").val();
+			eventSearch(time1, time2);
+			console.log(time1, time2);
+		}
+	)
+	</script>
+	</body>
+</html>
