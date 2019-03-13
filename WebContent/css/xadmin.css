@@ -286,11 +286,11 @@ xblock{
 .left-nav{
     position: absolute;
     top: 46px;
-    bottom: 42px;
+    bottom: 0px;
     left: 0;
     z-index: 2;
-    padding-top: 10px;
-    background-color: #EEEEEE;
+    padding-top: 20px;
+    background-color: #252B3A;
     width: 220px;
     max-width: 220px;
     overflow: auto;
@@ -299,8 +299,8 @@ xblock{
 
     /*width: 0px;*/
 }
-.left-nav #nav li{
-    border-bottom: 1px solid #e5e5e5;
+.left-nav #nav li:hover{
+    background-color: #1D222E;
 }
 .left-nav #nav li:hover > a{
     /*color: blue;*/
@@ -343,7 +343,7 @@ xblock{
     padding-left: 45px;
 }
 .left-nav #nav li .sub-menu li a:hover{
-    color: #148cf1;
+    color: #FA6E65;
 }
 .left-nav #nav li .sub-menu li a i{
     font-size: 12px;
@@ -482,7 +482,7 @@ table th, table td {
     bottom: 0px;
     width: 100%;
     line-height: 41px;
-    color: #fff;
+    color: #222;
     /*padding-left: 10px;*/
 }
 .footer .copyright{
