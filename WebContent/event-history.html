@@ -59,32 +59,7 @@
 	
 	
 	//搜索功能，表格重载，需要修改参数
-	var tableIns = table.render({
-		elem: '#eventHistory'
-		,cols: [
-			{field: 'occTime', title: '发生时间', width:160, sort: true, fixed: 'left'}
-		      ,{field: 'locale', title: '发生地点', width:125, sort: true}
-		      ,{field: 'department', title: '专业部门', width:100, sort: true}
-		      ,{field: 'level', title: '严重程度', width:100, sort: true} 
-		      ,{field: 'discPerson', title: '事件发现人', width: 110}
-		      ,{field: 'handlePerson', title: '事件处理参与人员', width: 160}
-		      ,{field: 'effBus', title: '是否影响业务', width: 125, sort: true}
-		      ,{field: 'incidence', title: '影响范围', width: 160}
-		      ,{fixed: 'right', title:'操作', toolbar: '#barHandle', width:150}
-		] //设置表头
-		,url: '/myproject/searchEvent' //设置异步接口
-		,id: 'idTest'
-	}); 
-	tableIns.reload({
-		where: { //设定异步数据接口的额外参数，任意设
-			aaaaaa: 'xxx'
-		    ,bbb: 'yyy'
-		    //…
-		}
-		,page: {
-			curr: 1 //重新从第 1 页开始
-		}
-	});
+	
 	
 	//事件历史初始加载
 	layui.use('table', function(){
@@ -94,16 +69,17 @@
 	    ,height: 482
 	    ,url: '/myproject/listEvent' //数据接口
 	    ,page: false //开启分页
+	    ,cellMinWidth: 100 //全局定义常规单元格的最小宽度，
 	    ,cols: [[ //表头
-	      {field: 'occTime', title: '发生时间', width:160, sort: true, fixed: 'left'}
-	      ,{field: 'locale', title: '发生地点', width:125, sort: true}
-	      ,{field: 'department', title: '专业部门', width:100, sort: true}
-	      ,{field: 'level', title: '严重程度', width:100, sort: true} 
-	      ,{field: 'discPerson', title: '事件发现人', width: 110}
-	      ,{field: 'handlePerson', title: '事件处理参与人员', width: 160}
-	      ,{field: 'effBus', title: '是否影响业务', width: 125, sort: true}
-	      ,{field: 'incidence', title: '影响范围', width: 160}
-	      ,{fixed: 'right', title:'操作', toolbar: '#barHandle', width:150}
+	    	{field: 'occTime', title: '发生时间', width:180, align:'center', sort: true, fixed: 'left'}
+		      ,{field: 'locale', title: '发生地点', align:'center', sort: true}
+		      ,{field: 'department', title: '专业部门', align:'center', sort: true}
+		      ,{field: 'level', title: '严重程度', align:'center', sort: true} 
+		      ,{field: 'discPerson', title: '事件发现人', align:'center'}
+		      ,{field: 'handlePerson', title: '事件处理参与人员', align:'center', width: 160}
+		      ,{field: 'effBus', title: '是否影响业务', align:'center', sort: true, width: 140}
+		      ,{field: 'incidence', title: '影响范围', align:'center',}
+		      ,{fixed: 'right', title:'操作', toolbar: '#barHandle', align:'center', width:150}
 	    ]]
 	  ,done: function(res, curr, count){
 		    $("#total").text(count);
