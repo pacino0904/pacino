@@ -1,220 +1,230 @@
 <!DOCTYPE html>
 <html>
-  
-  <head>
-    <meta charset="UTF-8">
-    <title>欢迎页面-X-admin2.0</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-    <style>
-      td{
-        border: 1px solid black;
-      }
-    </style>
-    <link rel="stylesheet" href="./css/font.css">
-    <link rel="stylesheet" href="./css/xadmin.css">
-    <script type="text/javascript" src="./JS/jquery-1.3.2.min.js"></script>
-    <script type="text/javascript" src="./lib/layui/layui.js" charset="utf-8"></script>
-    <script type="text/javascript" src="./JS/xadmin.js"></script>
-    <script language="javascript" src="JS/AjaxRequest.js"></script>
-    <script type="text/javascript" src="./JS/event.js"></script>
-  </head>
-  
-  <body>
-    <div class="x-nav">
-      <span class="layui-breadcrumb">
-        <a href="">首页</a>
-        <a href="">事件管理</a>
-        <a><cite>事件添加</cite></a>
-      </span>
-      <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
-        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
-    </div>
-    <div class="x-body">
+
+<head>
+  <meta charset="UTF-8">
+  <title>欢迎页面-X-admin2.0</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport"
+    content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <style>
+    td {
+      border: 1px solid black;
+    }
+  </style>
+  <link rel="stylesheet" href="./css/font.css">
+  <link rel="stylesheet" href="./css/xadmin.css">
+  <script type="text/javascript" src="./JS/jquery-1.3.2.min.js"></script>
+  <script type="text/javascript" src="./lib/layui/layui.js" charset="utf-8"></script>
+  <script type="text/javascript" src="./JS/xadmin.js"></script>
+  <script language="javascript" src="JS/AjaxRequest.js"></script>
+  <script type="text/javascript" src="./JS/event.js"></script>
+</head>
+
+<body>
+  <div class="x-nav">
+    <span class="layui-breadcrumb">
+      <a href="">首页</a>
+      <a href="">事件管理</a>
+      <a><cite>事件添加</cite></a>
+    </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
+      href="javascript:location.replace(location.href);" title="刷新">
+      <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+  </div>
+  <div class="x-body">
     <div style="width: 760px;margin:0 auto;">
-        <table style="width: 760px;text-align: center;">
-          <tr style="height: 60px">
-            <td colspan="6">
-              <img src="./images/rangelogo.png" alt="" style="float: left; margin: 9px; margin-right: -60px; width: 160px;">
-              <span style="font-size: 18px;">润泽国际信息港</span>
-              <br>
-              <span style="font-size: 19px; font-weight: bold;">基础设施事件工作单</span>
-            </td>
-          </tr>
-          <tr>
-            <td colspan="6" style="font-size: 15px; height: 30px;">事件单编号:RZSJ-2018121901</td>
-          </tr>
-          <tr style="height:40px">
-            <td rowspan="4">基本信息</td>
-            <td style="width:114px;">发生时间</td>
-            <td style="width: 205px;">
-	            <div class="layui-inline">
-			      <div class="layui-input-inline">
-			        <input type="text" class="layui-input occTime" id="time1" style="border: 0;" placeholder="yyyy-MM-dd HH:mm:ss">
-			      </div>
-			    </div>
-            </td>
-            <td style="width:114px;">发生地点</td>
-            <td style="width:205px;">
-              <select class="didian" style="float:left; margin-left:8px; width:90px;height:30px;border: none;">
-				<option value="" disabled selected>地点</option> 
-				<option value="A1">A1</option>
-                <option value="A2">A2</option>
-                <option value="A5">A5</option>
-                <option value="其他">其他</option>
-              </select>
-              <select class="mozu" style="float:left;width:90px;height:30px;border: none;">
-				<option value="" disabled selected>模组</option> 
-                <option value="M1">M1</option>
-                <option value="M2">M2</option>
-                <option value="M3">M3</option>
-                <option value="M4">M4</option>
-                <option value="其他">其他</option>
-              </select>
-            </td>
-          </tr>
-          <tr style="height: 40px">
-            <td>专业部门</td>
-            <td>
-              <select class="department" style="height: 30px; width: 130px; border: none;">
-                <option value="" disabled selected>请选择专业</option>  
-                <option value="综合">综合</option>
-                <option value="强电">强电</option>
-                <option value="暖通">暖通</option>
-                <option value="安防">安防</option>
-              </select>
-            </td>
-            <td>严重程度</td>
-            <td>
-              <select class="level" style="height: 30px; width: 60px; border: none; padding: 0;">
-                <option value="高">高</option>
-                <option value="中">中</option>
-                <option value="低">低</option>
-              </select>
-            </td>
-          </tr>
-          <tr style="height: 40px">
-            <td>事件发现人</td>
-            <td>
-              <input class="discPerson" type="text" style="width: 180px; height: 30px; border: 0;">
-            </td>
-            <td>事件发现时间</td>
-            <td>
+      <table style="width: 760px;text-align: center;">
+        <tr style="height: 60px">
+          <td colspan="6">
+            <img src="./images/rangelogo.png" alt=""
+              style="float: left; margin: 9px; margin-right: -60px; width: 160px;">
+            <span style="font-size: 18px;">润泽国际信息港</span>
+            <br>
+            <span style="font-size: 19px; font-weight: bold;">基础设施事件工作单</span>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="6" style="font-size: 15px; height: 30px;">事件单编号:RZSJ-2018121901</td>
+        </tr>
+        <tr style="height:40px">
+          <td rowspan="4">基本信息</td>
+          <td style="width:114px;">发生时间</td>
+          <td style="width: 206px;">
             <div class="layui-inline">
-		      <div class="layui-input-inline">
-		        <input type="text" class="layui-input discTime" id="time2" style="border: 0;" placeholder="yyyy-MM-dd HH:mm:ss">
-		      </div>
-		    </div>
-            </td>
-          </tr>
-          <tr>
-            <td>事件处理<br>参与人员</td>
-            <td colspan="3">
-              <input class="handlePerson" type="text" style="width: 500px; height: 50px; border: 0;">
-            </td>
-          </tr>
-        </table>
-        <table style="font-size:15px;width:760px;text-align:center;margin-top:-1px;">
-          <tr>
-            <td style="height:60px;">事件描述</td>
-            <td colspan="5">
-		      <textarea style="border-style:none;width:641px;padding:10px 20px;" class="layui-textarea eventDesc" ></textarea>
-            </td>
-          </tr>
-          <tr>
-            <td>是否影响<br>业务</td>
-            <td style="width: 85px;">
-              <select class="effBus" style="width: 40px; border: none; padding: 0;">
-                <option value="是">是</option>
-                <option value="否">否</option>
-              </select>
-            </td>
-            <td style="width:105px;">影响范围</td>
-            <td width="171px">
-              <input class="incidence" type="text" style="width: 150px; height: 40px; border: 0;">
-            </td>
-            <td style="width:105px;">影响时长</td>
-            <td width="171px">
-              <input class="effTime" type="text" style="width: 150px; height: 40px; border: 0;">
-            </td>
-          </tr>
-          <tr>
-            <td style="height:60px;" >事件处理<br>过程</td>
-            <td colspan="5">
-              <textarea style="border-style:none; width:641px;padding:10px 20px;" class="layui-textarea eventHandle" ></textarea>
-            </td>
-          </tr>
-          <tr>
-            <td style="height:60px;">事件原因<br>分析</td>
-            <td colspan="5">
-              <textarea style="border-style:none; width:641px;padding:10px 20px;" class="layui-textarea eventReason" ></textarea>
-            </td>
-          </tr>
-          <tr>
-            <td style="height:60px;">事件处理<br>结果</td>
-            <td colspan="5">
-              <textarea style="border-style:none; width:641px;padding:10px 20px;" class="layui-textarea eventResult" ></textarea>
-            </td>
-          </tr>
-          <tr>
-            <td>是否输入"缺陷管理"</td>
-            <td colspan="5"></td>
-          </tr>
-        </table>
+              <div class="layui-input-inline">
+                <input type="text" class="layui-input occTime" id="time1" style="border: 0;"
+                  placeholder="yyyy-MM-dd HH:mm:ss">
+              </div>
+            </div>
+          </td>
+          <td style="width:114px;">发生地点</td>
+          <td style="width:207px;">
+            <select class="didian" style="float:left; margin-left:8px; width:90px;height:30px;border: none;">
+              <option value="" disabled selected>地点</option>
+              <option value="A1">A1</option>
+              <option value="A2">A2</option>
+              <option value="A5">A5</option>
+              <option value="其他">其他</option>
+            </select>
+            <select class="mozu" style="float:left;width:90px;height:30px;border: none;">
+              <option value="" disabled selected>模组</option>
+              <option value="M1">M1</option>
+              <option value="M2">M2</option>
+              <option value="M3">M3</option>
+              <option value="M4">M4</option>
+              <option value="其他">其他</option>
+            </select>
+          </td>
+        </tr>
+        <tr style="height: 40px">
+          <td>专业部门</td>
+          <td>
+            <select class="department" style="height: 30px; width: 130px; border: none;">
+              <option value="" disabled selected>请选择专业</option>
+              <option value="综合">综合</option>
+              <option value="强电">强电</option>
+              <option value="暖通">暖通</option>
+              <option value="安防">安防</option>
+            </select>
+          </td>
+          <td>严重程度</td>
+          <td>
+            <select class="level" style="height: 30px; width: 60px; border: none; padding: 0;">
+              <option value="高">高</option>
+              <option value="中">中</option>
+              <option value="低">低</option>
+            </select>
+          </td>
+        </tr>
+        <tr style="height: 40px">
+          <td>事件发现人</td>
+          <td>
+            <input class="discPerson" type="text" style="width: 180px; height: 30px; border: 0;">
+          </td>
+          <td>事件发现时间</td>
+          <td>
+            <div class="layui-inline">
+              <div class="layui-input-inline">
+                <input type="text" class="layui-input discTime" id="time2" style="border: 0;"
+                  placeholder="yyyy-MM-dd HH:mm:ss">
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>事件处理<br>参与人员</td>
+          <td colspan="3">
+            <input class="handlePerson" type="text" style="width: 500px; height: 50px; border: 0;">
+          </td>
+        </tr>
+      </table>
+      <table style="font-size:15px;width:760px;text-align:center;margin-top:-1px;">
+        <tr>
+          <td style="height:60px;">事件描述</td>
+          <td colspan="5">
+            <textarea style="border-style:none;width:641px;padding:10px 20px;"
+              class="layui-textarea eventDesc"></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td>是否影响<br>业务</td>
+          <td style="width: 85px;">
+            <select class="effBus" style="width: 40px; border: none; padding: 0;">
+              <option value="是">是</option>
+              <option value="否">否</option>
+            </select>
+          </td>
+          <td style="width:105px;">影响范围</td>
+          <td width="171px">
+            <input class="incidence" type="text" style="width: 150px; height: 40px; border: 0;">
+          </td>
+          <td style="width:105px;">影响时长</td>
+          <td width="171px">
+            <input class="effTime" type="text" style="width: 150px; height: 40px; border: 0;">
+          </td>
+        </tr>
+        <tr>
+          <td style="height:60px;">事件处理<br>过程</td>
+          <td colspan="5">
+            <textarea style="border-style:none; width:641px;padding:10px 20px;"
+              class="layui-textarea eventHandle"></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td style="height:60px;">事件原因<br>分析</td>
+          <td colspan="5">
+            <textarea style="border-style:none; width:641px;padding:10px 20px;"
+              class="layui-textarea eventReason"></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td style="height:60px;">事件处理<br>结果</td>
+          <td colspan="5">
+            <textarea style="border-style:none; width:641px;padding:10px 20px;"
+              class="layui-textarea eventResult"></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td>是否输入"缺陷管理"</td>
+          <td colspan="5"></td>
+        </tr>
+      </table>
     </div>
-	    <div style="width: 760px;margin:10px auto;">
-	    	<button id="confirm" class="layui-btn layui-btn-radius" style="margin-left: 370px;">提交</button>
-	    </div>
+    <div style="width: 760px;margin:10px auto;">
+      <button id="confirm" class="layui-btn layui-btn-radius" style="margin-left: 370px;">提交</button>
     </div>
-    <script>
-    layui.use('laydate', function(){
-		var laydate = layui.laydate;
-		laydate.render({
+  </div>
+  <script>
+    layui.use('laydate', function () {
+      var laydate = layui.laydate;
+      laydate.render({
         elem: '#time1'
-        ,type: 'datetime'
-		});
-		
-		laydate.render({
-	        elem: '#time2'
-	        ,type: 'datetime'
-			});
+        , type: 'datetime'
+      });
+
+      laydate.render({
+        elem: '#time2'
+        , type: 'datetime'
+      });
     })
-    layui.use('layer', function(){
-    	  var layer = layui.layer;
-    	  $("#confirm").click(function () {
-    		  layer.open({
-        		  title:'事件单'
-        		  ,content: '是否提交基础设施事件工作单？'
-        		  ,btn: ['确认', '修改']
-        		  ,yes: function(index, layero){
-        		    //按钮【按钮一】的回调
-        		    save()
-        			  ,layer.msg('提交成功！', {
-     					 icon: 1,
-     					 time: 1000 //2秒关闭（如果不配置，默认是3秒）
-    					})
-    					,setTimeout(function () {
-                            window.location.reload();
-                        }, 1000)
-        		  }
-        		  ,btn2: function(index, layero){
-        		    
-        		  }
-        		  ,cancel: function(){ 
-        		    //右上角关闭回调
-        		    //return false 开启该代码可禁止点击该按钮关闭
-        		  }
-        		  ,shadeClose:true
-        		});
-          });
-    	});
-    
+    layui.use('layer', function () {
+      var layer = layui.layer;
+      $("#confirm").click(function () {
+        layer.open({
+          title: '事件单'
+          , content: '是否提交基础设施事件工作单？'
+          , btn: ['确认', '修改']
+          , yes: function (index, layero) {
+            //按钮【按钮一】的回调
+            save()
+              , layer.msg('提交成功！', {
+                icon: 1,
+                time: 1000 //2秒关闭（如果不配置，默认是3秒）
+              })
+              , setTimeout(function () {
+                window.location.reload();
+              }, 1000)
+          }
+          , btn2: function (index, layero) {
+
+          }
+          , cancel: function () {
+            //右上角关闭回调
+            //return false 开启该代码可禁止点击该按钮关闭
+          }
+          , shadeClose: true
+        });
+      });
+    });
+
     //事件单编号格式：2019022001（时间+编号），思路提取出最新的事件单编号，提取前8位数字，与当前时间进行判断
     //不相同说明当日没有提交事件单，则生成当日时间+01；相同则提取最新事件单编号，进行自增
-    
-    </script>
-  </body>
+
+  </script>
+</body>
+
 </html>
