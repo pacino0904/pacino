@@ -301,6 +301,11 @@ xblock{
 }
 .left-nav #nav li:hover{
     background-color: #1D222E;
+    border-left: 1.2px solid #F66F6A;
+}
+.left-nav #nav li li:hover{
+    background-color: #1D222E;
+    border-left: none;
 }
 .left-nav #nav li:hover > a{
     /*color: blue;*/
