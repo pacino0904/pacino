@@ -12,7 +12,7 @@
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
   <style>
     td {
-      border: 1px solid black;
+      border: 1px solid #333333;
     }
   </style>
   <link rel="stylesheet" href="./css/font.css">
@@ -38,7 +38,8 @@
   <div class="x-body">
     <div style="width: 760px;margin:0 auto;">
       <table style="width: 760px;text-align: center;">
-        <tr style="height: 60px">
+        <!--备选颜色#D0FFE8-->
+        <tr style="height: 60px;background-color: #F0FFFF">
           <td colspan="6">
             <img src="./images/rangelogo.png" alt=""
               style="float: left; margin: 9px; margin-right: -60px; width: 160px;">
@@ -48,11 +49,11 @@
           </td>
         </tr>
         <tr>
-          <td colspan="6" style="font-size: 15px; height: 30px;">事件单编号:RZSJ-2018121901</td>
+          <td colspan="6" style="font-size: 15px; height: 30px; background-color: #F0F8FF">事件单编号:RZSJ-2018121901</td>
         </tr>
         <tr style="height:40px">
-          <td rowspan="4">基本信息</td>
-          <td style="width:114px;">发生时间</td>
+          <td rowspan="4" style="background-color: #F0FFFF">基本信息</td>
+          <td style="width:114px;background-color: #F0FFFF">发生时间</td>
           <td style="width: 206px;">
             <div class="layui-inline">
               <div class="layui-input-inline">
@@ -61,7 +62,7 @@
               </div>
             </div>
           </td>
-          <td style="width:114px;">发生地点</td>
+          <td style="width:114px;background-color: #F0FFFF">发生地点</td>
           <td style="width:207px;">
             <select class="didian" style="float:left; margin-left:8px; width:90px;height:30px;border: none;">
               <option value="" disabled selected>地点</option>
@@ -81,7 +82,7 @@
           </td>
         </tr>
         <tr style="height: 40px">
-          <td>专业部门</td>
+          <td style="background-color: #F0F8FF">专业部门</td>
           <td>
             <select class="department" style="height: 30px; width: 130px; border: none;">
               <option value="" disabled selected>请选择专业</option>
@@ -91,7 +92,7 @@
               <option value="安防">安防</option>
             </select>
           </td>
-          <td>严重程度</td>
+          <td style="background-color: #F0F8FF">严重程度</td>
           <td>
             <select class="level" style="height: 30px; width: 60px; border: none; padding: 0;">
               <option value="高">高</option>
@@ -101,11 +102,11 @@
           </td>
         </tr>
         <tr style="height: 40px">
-          <td>事件发现人</td>
+          <td style="background-color: #F0FFFF">事件发现人</td>
           <td>
             <input class="discPerson" type="text" style="width: 180px; height: 30px; border: 0;">
           </td>
-          <td>事件发现时间</td>
+          <td style="background-color: #F0FFFF">事件发现时间</td>
           <td>
             <div class="layui-inline">
               <div class="layui-input-inline">
@@ -116,7 +117,7 @@
           </td>
         </tr>
         <tr>
-          <td>事件处理<br>参与人员</td>
+          <td style="background-color: #F0F8FF">事件处理<br>参与人员</td>
           <td colspan="3">
             <input class="handlePerson" type="text" style="width: 500px; height: 50px; border: 0;">
           </td>
@@ -124,52 +125,52 @@
       </table>
       <table style="font-size:15px;width:760px;text-align:center;margin-top:-1px;">
         <tr>
-          <td style="height:60px;">事件描述</td>
+          <td style="height:60px;background-color: #F0F8FF">事件描述</td>
           <td colspan="5">
             <textarea style="border-style:none;width:641px;padding:10px 20px;"
               class="layui-textarea eventDesc"></textarea>
           </td>
         </tr>
         <tr>
-          <td>是否影响<br>业务</td>
+          <td style="background-color: #F0FFFF">是否影响<br>业务</td>
           <td style="width: 85px;">
             <select class="effBus" style="width: 40px; border: none; padding: 0;">
               <option value="是">是</option>
               <option value="否">否</option>
             </select>
           </td>
-          <td style="width:105px;">影响范围</td>
+          <td style="width:105px;background-color: #F0FFFF">影响范围</td>
           <td width="171px">
             <input class="incidence" type="text" style="width: 150px; height: 40px; border: 0;">
           </td>
-          <td style="width:105px;">影响时长</td>
+          <td style="width:105px;background-color: #F0FFFF">影响时长</td>
           <td width="171px">
             <input class="effTime" type="text" style="width: 150px; height: 40px; border: 0;">
           </td>
         </tr>
         <tr>
-          <td style="height:60px;">事件处理<br>过程</td>
+          <td style="height:60px;background-color: #F0F8FF">事件处理<br>过程</td>
           <td colspan="5">
             <textarea style="border-style:none; width:641px;padding:10px 20px;"
               class="layui-textarea eventHandle"></textarea>
           </td>
         </tr>
         <tr>
-          <td style="height:60px;">事件原因<br>分析</td>
+          <td style="height:60px;background-color: #F0FFFF">事件原因<br>分析</td>
           <td colspan="5">
             <textarea style="border-style:none; width:641px;padding:10px 20px;"
               class="layui-textarea eventReason"></textarea>
           </td>
         </tr>
         <tr>
-          <td style="height:60px;">事件处理<br>结果</td>
+          <td style="height:60px;background-color: #DFF3FF">事件处理<br>结果</td>
           <td colspan="5">
             <textarea style="border-style:none; width:641px;padding:10px 20px;"
               class="layui-textarea eventResult"></textarea>
           </td>
         </tr>
         <tr>
-          <td>是否输入"缺陷管理"</td>
+          <td style="background-color: #F0FFFF">是否输入"缺陷管理"</td>
           <td colspan="5"></td>
         </tr>
       </table>

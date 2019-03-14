@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="UTF-8">
 	<title>欢迎页面-X-admin2.0</title>
@@ -64,7 +65,6 @@
 			var table = layui.table;
 			table.render({
 				elem: '#eventHistory'
-				, height: 482
 				, url: '/myproject/listEvent' //数据接口
 				, page: false //开启分页
 				, cellMinWidth: 100 //全局定义常规单元格的最小宽度，
@@ -91,7 +91,7 @@
 					url: '/myproject/listEvent'
 				}
 			});
-			
+
 			//监听行工具事件
 			table.on('tool(test)', function (obj) {
 				var data = obj.data;
