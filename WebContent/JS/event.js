@@ -11,6 +11,28 @@ function save() {
 	})
 }
 
+function bgsqSave() {
+	var lxRadios = document.getElementsByName('bglx');
+	var bglx;
+	for (var i = 0, length = lxRadios.length; i < length; i++) {
+		if (lxRadios[i].checked) {
+			bglx = lxRadios[i].value;
+			break;
+		}
+	}
+	var djRadios = document.getElementsByName('bgdj');
+	var bgdj;
+	for (var i = 0, length = djRadios.length; i < length; i++) {
+		if (djRadios[i].checked) {
+			bgdj = djRadios[i].value;
+			break;
+		}
+	}
+
+	var param = "bglx=" + bglx + "&bgxm=" + $(".bgxm").val() + "&bgdj=" + bgdj + "&jhssr=" + $(".jhssr").val() + "&jhkssj=" + $(".jhkssj").val() + "&jhjssj=" + $(".jhjssj").val() + "&bgsqr=" + $(".bgsqr").val() + "&sqsj=" + $(".sqsj").val() + "&bgyy=" + $(".bgyy").val() + "&bgfa=" + $(".bgfa").val() + "&bghtfa=" + $(".bghtfa").val();
+	console.log(param);
+}
+
 function detail(dataid) {
 	var param = "id=" + dataid;
 	$.ajax({
