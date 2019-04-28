@@ -25,6 +25,42 @@
 </head>
 
 <body>
+  <script>
+  var sjdbh;
+    function bhSearch() {
+      var nowTime = new Date();
+      var startTime = nowTime.getFullYear() + "-" + (nowTime.getMonth()+1) + "-" + nowTime.getDate() + " " + 0 + ":" + 0 + ":" + 0;
+      var endTime = nowTime.getFullYear() + "-" + (nowTime.getMonth()+1) + "-" + nowTime.getDate() + " " + 23 + ":" + 59 + ":" + 59;
+      var param = "startTime=" + startTime + "&endTime=" + endTime;
+      $.ajax({
+        type: "POST",
+        url: "/myproject/eventSjdbh",
+        data: param,
+        dataType: "json",
+        success: function (data) {
+        	  var month = nowTime.getMonth()+1;
+        	  if(month<10){
+        		  month = '0' + month;
+        	  }
+        	  var day = nowTime.getDate();
+        	  if(day<10){
+        		  day = '0' + day;
+        	  }
+        	  if(data == 0){
+        		  sjdbh = 'RZSJ-' + nowTime.getFullYear() + month + day + 01;
+        	  }
+        	  else{
+        		  if(data<10){
+        			  data = '0' + data;
+        		  }
+        		  sjdbh = 'RZSJ-' + nowTime.getFullYear() + month + day + data;
+        	  }
+        	  $("#sjdbhTd").html(sjdbh);
+        }
+      })
+    }
+    bhSearch();
+  </script>
   <div class="x-nav">
     <span class="layui-breadcrumb">
       <a href="">首页</a>
@@ -49,7 +85,7 @@
           </td>
         </tr>
         <tr>
-          <td colspan="6" style="font-size: 15px; height: 30px; background-color: #F0F8FF">事件单编号:RZSJ-2018121901</td>
+          <td colspan="6" style="font-size: 15px; height: 30px; background-color: #F0F8FF">事件单编号:<span id="sjdbhTd"></span></td>
         </tr>
         <tr style="height:40px">
           <td rowspan="4" style="background-color: #F0FFFF">基本信息</td>

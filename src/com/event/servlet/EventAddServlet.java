@@ -31,7 +31,10 @@ public class EventAddServlet extends HttpServlet {
 		event.setEventHandle(request.getParameter("eventHandle"));
 		event.setEventReason(request.getParameter("eventReason"));
 		event.setEventResult(request.getParameter("eventResult"));
+		event.setTjsj(request.getParameter("tjsj"));
+		event.setEventNumber(request.getParameter("eventNumber"));
 		new EventDao().add(event);
+		System.out.println(request.getParameter("eventNumber"));
 	}
 	
 	

@@ -1,5 +1,7 @@
 function save() {
-	var param = "occTime=" + $(".occTime").val() + "&locale=" + $(".didian").val() + $(".mozu").val() + "&department=" + $(".department").val() + "&level=" + $(".level").val() + "&discPerson=" + $(".discPerson").val() + "&discTime=" + $(".discTime").val() + "&handlePerson=" + $(".handlePerson").val() + "&eventDesc=" + $(".eventDesc").val() + "&effBus=" + $(".effBus").val() + "&incidence=" + $(".incidence").val() + "&effTime=" + $(".effTime").val() + "&eventHandle=" + $(".eventHandle").val() + "&eventReason=" + $(".eventReason").val() + "&eventResult=" + $(".eventResult").val();
+	var nowTime = new Date();
+	var tjsj = nowTime.getFullYear()+"-"+(nowTime.getMonth()+1)+"-"+nowTime.getDate()+" "+nowTime.getHours()+":"+nowTime.getMinutes()+":"+nowTime.getSeconds();
+	var param = "occTime=" + $(".occTime").val() + "&locale=" + $(".didian").val() + $(".mozu").val() + "&department=" + $(".department").val() + "&level=" + $(".level").val() + "&discPerson=" + $(".discPerson").val() + "&discTime=" + $(".discTime").val() + "&handlePerson=" + $(".handlePerson").val() + "&eventDesc=" + $(".eventDesc").val() + "&effBus=" + $(".effBus").val() + "&incidence=" + $(".incidence").val() + "&effTime=" + $(".effTime").val() + "&eventHandle=" + $(".eventHandle").val() + "&eventReason=" + $(".eventReason").val() + "&eventResult=" + $(".eventResult").val() + "&tjsj=" + tjsj + "&eventNumber=" + sjdbh;
 	$.ajax({
 		type: "POST",
 		url: "/myproject/EventAddServlet",
@@ -30,7 +32,15 @@ function bgsqSave() {
 	}
 
 	var param = "bglx=" + bglx + "&bgxm=" + $(".bgxm").val() + "&bgdj=" + bgdj + "&jhssr=" + $(".jhssr").val() + "&jhkssj=" + $(".jhkssj").val() + "&jhjssj=" + $(".jhjssj").val() + "&bgsqr=" + $(".bgsqr").val() + "&sqsj=" + $(".sqsj").val() + "&bgyy=" + $(".bgyy").val() + "&bgfa=" + $(".bgfa").val() + "&bghtfa=" + $(".bghtfa").val();
-	console.log(param);
+	$.ajax({
+		type: "POST",
+		url: "/myproject/addChange",
+		data: param,
+		dataType: "json",
+		success: function (data) {
+			console.log(param);
+		}
+	})
 }
 
 function detail(dataid) {
@@ -55,6 +65,7 @@ function detail(dataid) {
 			$("#eventHandle").html(data.eventHandle);
 			$("#eventReason").html(data.eventReason);
 			$("#eventResult").html(data.eventResult);
+			$("#sjdbhTd").html(data.eventNumber);
 		}
 	})
 }

@@ -29,7 +29,7 @@
         <span class="layui-breadcrumb">
             <a href="">首页</a>
             <a href="">基础设施变更管理</a>
-            <a><cite>基础设施变更申请单</cite></a>
+            <a><cite>变更申请</cite></a>
         </span>
         <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
             href="javascript:location.replace(location.href);" title="刷新">
@@ -73,7 +73,8 @@
                 <tr style="height:40px;">
                     <td>变更项目</td>
                     <td>
-                        <input type="text" class="bgxm" style="width: 100px; height: 30px; border: 0;text-align: center;">
+                        <input type="text" class="bgxm"
+                            style="width: 100px; height: 30px; border: 0;text-align: center;">
                     </td>
                     <td>变更等级</td>
                     <td colspan="2">
@@ -89,7 +90,8 @@
                 <tr style="height:40px;">
                     <td>计划实施人</td>
                     <td colspan="4">
-                        <input type="text" class="jhssr" style="width: 500px; height: 30px; border: 0; padding-left: 10px;">
+                        <input type="text" class="jhssr"
+                            style="width: 500px; height: 30px; border: 0; padding-left: 10px;">
                     </td>
                 </tr>
                 <tr style="height:42px;">
@@ -113,7 +115,8 @@
                 <tr style="height:40px;">
                     <td>变更申请人</td>
                     <td>
-                        <input type="text" class="bgsqr" style="width: 100px; height: 30px; border: 0;text-align: center;">
+                        <input type="text" class="bgsqr"
+                            style="width: 100px; height: 30px; border: 0;text-align: center;">
                     </td>
                     <td>申请时间</td>
                     <td colspan="2">
@@ -175,13 +178,15 @@
                     <td rowspan="6">变更实施</td>
                     <td rowspan="3">实施情况说明</td>
                     <td colspan="4" style="height:40px;">
-                        <input type="text" class="ssqksm" style="width: 500px; height: 30px; border: 0; padding-left: 10px;">
+                        <input type="text" class="ssqksm"
+                            style="width: 500px; height: 30px; border: 0; padding-left: 10px;">
                     </td>
                 </tr>
                 <tr>
                     <td style="height:40px;">实施人</td>
                     <td colspan="3">
-                        <input type="text" class="ssr" style="width: 390px; height: 30px; border: 0; padding-left: 10px;">
+                        <input type="text" class="ssr"
+                            style="width: 390px; height: 30px; border: 0; padding-left: 10px;">
                     </td>
                 </tr>
                 <tr>
@@ -286,7 +291,7 @@
             $("#confirm").click(function () {
                 layer.open({
                     title: '事件单'
-                    , content: '是否提交基础设施事件工作单？'
+                    , content: '是否提交基础设施变更工作单？'
                     , btn: ['确认', '修改']
                     , yes: function (index, layero) {
                         //按钮【按钮一】的回调

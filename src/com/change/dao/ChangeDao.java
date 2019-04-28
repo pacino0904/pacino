@@ -19,6 +19,7 @@ public class ChangeDao {
 	public Connection getConnection() throws SQLException{
 		return DriverManager.getConnection("jdbc:mysql://localhost:3306/mysql?useUnicode=true&useSSL=false&characterEncoding=UTF-8", "root", "123456");
 	}
+	
 	public void add(Change change){
 		String sql = "insert into `oa-change` values(null,?,?,?,?,?,?,?,?,?,?,?);";
 		try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(sql);){
@@ -38,6 +39,10 @@ public class ChangeDao {
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void searchNumber() {
+		
 	}
 	
 

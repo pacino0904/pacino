@@ -24,9 +24,9 @@ public class EventDao {
 	public Connection getConnection() throws SQLException{
 		return DriverManager.getConnection("jdbc:mysql://localhost:3306/mysql?useUnicode=true&useSSL=false&characterEncoding=UTF-8", "root", "123456");
 	}
-	
+	//添加事件单
 	public void add(Event event) {
-		String sql = "insert into `oa-event` values(null,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+		String sql = "insert into `oa-event` values(null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 		try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(sql);){
 			ps.setString(1, event.occTime);
 			ps.setString(2, event.locale);
@@ -42,6 +42,8 @@ public class EventDao {
 			ps.setString(12, event.eventHandle);
 			ps.setString(13, event.eventReason);
 			ps.setString(14, event.eventResult);
+			ps.setString(15, event.tjsj);
+			ps.setString(16, event.eventNumber);
 			
 			ps.execute();
 		}catch(SQLException e) {
@@ -49,6 +51,7 @@ public class EventDao {
 		}
 	}
 
+	//查看全部事件单
 	public List<Event> list(){
 		return list(0, Short.MAX_VALUE);
 	}
@@ -95,6 +98,7 @@ public class EventDao {
 		return events;
 	}
 	
+	//查看事件单数量
 	public int total() {
 		String sql = "SELECT COUNT(*) FROM `oa-event`";
 		int totalCount = 0;
@@ -109,6 +113,7 @@ public class EventDao {
 		return totalCount;
 	}
 	
+	//根据id查看事件单详情
 	public void detail(Event detailEvent) {
 		String sql = "select * from `oa-event` where id=?;";
 		try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(sql);){
@@ -129,6 +134,7 @@ public class EventDao {
 				String eventHandle = rs.getString(13);
 				String eventReason = rs.getString(14);
 				String eventResult = rs.getString(15);
+				String eventNumber = rs.getString(17);
 				detailEvent.occTime = occTime.substring(0, occTime.length()-2);
 				detailEvent.locale = locale;
 				detailEvent.department = department;
@@ -143,12 +149,14 @@ public class EventDao {
 				detailEvent.eventHandle = eventHandle;
 				detailEvent.eventReason = eventReason;
 				detailEvent.eventResult = eventResult;
+				detailEvent.eventNumber = eventNumber;
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
+	//删除事件单
 	public void delete(Event event) {
 		String sql = "delete from `oa-event` where id=?;";
 		try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(sql);){
@@ -159,9 +167,10 @@ public class EventDao {
 		}
 	}
 	
+	//根据occ-time字段查看事件单
 	public List<Event> search(String startTime, String endTime) {
 		List<Event> events = new ArrayList<Event>();
-		String sql = "select * from `oa-event` where 'occ-time' between ? and ?";
+		String sql = "select * from `oa-event` where `occ-time` between ? and ?";
 		try(Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(sql);){
 			ps.setString(1, startTime);
 			ps.setString(2, endTime);
@@ -204,8 +213,9 @@ public class EventDao {
 		return events;
 	}
 	
+	//查询结果的数量
 	public int searchTotal() {
-		String sql = "SELECT COUNT(*) FROM (select * from `oa-event` where 'occ-time' between ? and ?) as total";
+		String sql = "SELECT COUNT(*) FROM (select * from `oa-event` where `occ-time` between ? and ?) as total";
 		int totalCount = 0;
 		try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(sql);){
 			ResultSet rs = ps.executeQuery();
@@ -216,6 +226,22 @@ public class EventDao {
 			e.printStackTrace();
 		}
 		return totalCount;
+	}
+	//事件单编号，查询当天提交的事件单数量
+	public int sjdbh(String startTime, String endTime) {
+		String sql = "SELECT COUNT(*) FROM (select * from `oa-event` where `tjsj` between ? and ?) as total";
+		int todayCount = 0;
+		try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(sql);){
+			ps.setString(1, startTime);
+			ps.setString(2, endTime);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				todayCount = rs.getInt(1);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return todayCount;
 	}
 	
 }

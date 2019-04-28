@@ -18,7 +18,21 @@ public class Event {
 	public String eventReason;
 	public String eventResult;
 	public String eventCount;
+	public String tjsj;
+	public String eventNumber;
 
+	public String getEventNumber() {
+		return eventNumber;
+	}
+	public void setEventNumber(String eventNumber) {
+		this.eventNumber = eventNumber;
+	}
+	public String getTjsj() {
+		return tjsj;
+	}
+	public void setTjsj(String tjsj) {
+		this.tjsj = tjsj;
+	}
 	public int getId() {
 		return id;
 	}

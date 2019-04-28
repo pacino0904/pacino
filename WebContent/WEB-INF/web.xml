@@ -65,4 +65,20 @@
     <servlet-name>MemberListServlet</servlet-name>
     <url-pattern>/listMember</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>ChangeAddServlet</servlet-name>
+    <servlet-class>com.change.servlet.ChangeAddServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ChangeAddServlet</servlet-name>
+    <url-pattern>/addChange</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>EventSjdbh</servlet-name>
+    <servlet-class>com.event.servlet.EventSjdbhServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EventSjdbh</servlet-name>
+    <url-pattern>/eventSjdbh</url-pattern>
+  </servlet-mapping>
 </web-app>
