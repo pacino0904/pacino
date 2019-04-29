@@ -24,7 +24,7 @@ public class EventDao {
 	public Connection getConnection() throws SQLException{
 		return DriverManager.getConnection("jdbc:mysql://localhost:3306/mysql?useUnicode=true&useSSL=false&characterEncoding=UTF-8", "root", "123456");
 	}
-	//添加事件单
+	//事件单添加功能
 	public void add(Event event) {
 		String sql = "insert into `oa-event` values(null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 		try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(sql);){
@@ -113,7 +113,7 @@ public class EventDao {
 		return totalCount;
 	}
 	
-	//根据id查看事件单详情
+	//事件单详情功能，根据id查看
 	public void detail(Event detailEvent) {
 		String sql = "select * from `oa-event` where id=?;";
 		try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(sql);){
@@ -156,7 +156,7 @@ public class EventDao {
 		}
 	}
 
-	//删除事件单
+	//事件单删除功能
 	public void delete(Event event) {
 		String sql = "delete from `oa-event` where id=?;";
 		try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(sql);){
@@ -252,7 +252,7 @@ public class EventDao {
 		return events;
 	}
 	
-	//事件单，查询结果的数量
+	//事件单搜索功能，查询结果的数量
 	public int searchTotal(String startTime, String endTime, String keyWord) {
 		int totalCount = 0;
 		if(startTime.equals("null")) {
