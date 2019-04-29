@@ -51,8 +51,7 @@ public class EventSearchServlet extends HttpServlet {
 		String endTime = request.getParameter("endTime");
 		String keyWord = request.getParameter("keyWord");
 		List<Event> events = new EventDao().search(startTime, endTime, keyWord);
-		
-		int count = 1;
+		int count =  new EventDao().searchTotal(startTime, endTime, keyWord);
 		StringBuffer sb = new StringBuffer();
 		String trFormat1 = "{\"code\":0,\"msg\":\"\",\"count\":%d,\"data\":[";
 		String tr1 = String.format(trFormat1, count);

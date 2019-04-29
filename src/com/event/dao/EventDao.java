@@ -212,7 +212,7 @@ public class EventDao {
 				e.printStackTrace();
 			}
 		}else {
-			String sql = "SELECT * FROM `oa-event` WHERE CONCAT(`disc-person`,`handle-person`,`event-desc`) LIKE ? AND `occ-time` between ? and ?";
+			String sql = "SELECT * FROM `oa-event` WHERE CONCAT(`locale`,`department`,`level`,`disc-person`,`handle-person`,`event-desc`,`event-reason`) LIKE ? AND `occ-time` between ? and ?";
 			try(Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(sql);){
 				keyWord = "%"+keyWord+"%";
 				ps.setString(1, keyWord);
@@ -253,16 +253,40 @@ public class EventDao {
 	}
 	
 	//事件单，查询结果的数量
-	public int searchTotal() {
-		String sql = "SELECT COUNT(*) FROM (select * from `oa-event` where `occ-time` between ? and ?) as total";
+	public int searchTotal(String startTime, String endTime, String keyWord) {
 		int totalCount = 0;
-		try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(sql);){
-			ResultSet rs = ps.executeQuery();
-			while(rs.next()) {
-				totalCount = rs.getInt(1);
+		if(startTime.equals("null")) {
+			startTime = "2000-01-01";
+		}
+		if(endTime.equals("null")) {
+			endTime = "2050-01-01";
+		}
+		if(keyWord.equals("null")) {
+			String sql = "SELECT COUNT(*) FROM (select * from `oa-event` where `occ-time` between ? and ?) as total";
+			try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(sql);){
+				ps.setString(1, startTime);
+				ps.setString(2, endTime);
+				ResultSet rs = ps.executeQuery();
+				while(rs.next()) {
+					totalCount = rs.getInt(1);
+				}
+			}catch(SQLException e) {
+				e.printStackTrace();
 			}
-		}catch(SQLException e) {
-			e.printStackTrace();
+		}else {
+			String sql = "SELECT COUNT(*) FROM (SELECT * FROM `oa-event` WHERE CONCAT(`locale`,`department`,`level`,`disc-person`,`handle-person`,`event-desc`,`event-reason`) LIKE ? AND `occ-time` between ? and ?) as total";
+			try(Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(sql);){
+				keyWord = "%"+keyWord+"%";
+				ps.setString(1, keyWord);
+				ps.setString(2, startTime);
+				ps.setString(3, endTime);
+				ResultSet rs = ps.executeQuery();
+				while(rs.next()) {
+					totalCount = rs.getInt(1);
+				}
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		return totalCount;
 	}

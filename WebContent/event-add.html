@@ -47,11 +47,11 @@
         		  day = '0' + day;
         	  }
         	  if(data == 0){
-        		  sjdbh = 'RZSJ-' + nowTime.getFullYear() + month + day + 01;
+        		  sjdbh = 'RZSJ-' + nowTime.getFullYear() + month + day + '01';
         	  }
         	  else{
         		  if(data<10){
-        			  data = '0' + data;
+        			  data = '0' + (data+1);
         		  }
         		  sjdbh = 'RZSJ-' + nowTime.getFullYear() + month + day + data;
         	  }
