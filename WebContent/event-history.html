@@ -34,10 +34,8 @@
 			placeholder="开始日期">
 		<input type="text" class="layui-input" id="end-time" style="width:105px;margin-right:10px;float:left"
 			placeholder="结束日期">
-		<input type="text" class="layui-input" style="width:140px;margin-right:10px;float:left" lay-verify="title"
-			autocomplete="off" placeholder="事件发现人(选填)">
-		<input type="text" class="layui-input" style="width:120px;margin-right:10px;float:left" lay-verify="title"
-			autocomplete="off" placeholder="处理人员(选填)">
+		<input type="text" class="layui-input" id="key-word" style="width:140px;margin-right:10px;float:left" lay-verify="title"
+			autocomplete="off" placeholder="搜索关键词">
 		<button class="layui-btn" id="search" data-type="reload" lay-filter="sreach"><i
 				class="layui-icon">&#xe615;</i></button>
 	</div>
@@ -47,6 +45,7 @@
 		<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 	</script>
 	<script>
+		//加载时间插件
 		layui.use('laydate', function () {
 			var laydate = layui.laydate;
 			//常规用法
@@ -85,12 +84,33 @@
 				}
 			});
 
-			//搜索功能，表格重载，需要修改参数
-			table.reload('eventHistory', {
-				where: { //设定异步数据接口的额外参数，任意设
-					url: '/myproject/listEvent'
+			//搜索功能，表格重载
+			$("#search").click(function(){
+				var startTime;
+				if($("#start-time").val()){
+					startTime = $("#start-time").val();
+				}else{
+					startTime = null;
 				}
-			});
+				var endTime;
+				if($("#end-time").val()){
+					endTime = $("#end-time").val();
+				}else{
+					endTime = null;
+				}
+				var keyWord;
+				if($("#key-word").val()){
+					keyWord = $("#key-word").val();
+				}else{
+					keyWord = null;
+				}
+				var param = "startTime=" + startTime + "&endTime=" + endTime + "&keyWord=" + keyWord;
+				var url = '/myproject/searchEvent?' + param;
+				console.log(url);
+				table.reload('eventHistory', {
+					url: url
+				});
+			})
 
 			//监听行工具事件
 			table.on('tool(test)', function (obj) {
@@ -107,15 +127,6 @@
 				}
 			});
 		});
-
-		$("#search").click(
-			function () {
-				var time1 = $("#start-time").val();
-				var time2 = $("#end-time").val();
-				eventSearch(time1, time2);
-				console.log(time1, time2);
-			}
-		)
 	</script>
 </body>
 

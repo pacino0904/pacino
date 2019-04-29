@@ -50,11 +50,11 @@
     <url-pattern>/deleteEvent</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>EventSerchServlet</servlet-name>
-    <servlet-class>com.event.servlet.EventSerchServlet</servlet-class>
+    <servlet-name>EventSearchServlet</servlet-name>
+    <servlet-class>com.event.servlet.EventSearchServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>EventSerchServlet</servlet-name>
+    <servlet-name>EventSearchServlet</servlet-name>
     <url-pattern>/searchEvent</url-pattern>
   </servlet-mapping>
   <servlet>

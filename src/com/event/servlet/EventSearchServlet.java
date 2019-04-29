@@ -1,7 +1,6 @@
 package com.event.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -13,19 +12,17 @@ import javax.servlet.http.HttpServletResponse;
 import com.event.dao.EventDao;
 import com.event.model.Event;
 
-import net.sf.json.JSONObject;
-
 /**
  * Servlet implementation class EventSerchServlet
  */
-@WebServlet("/EventSerchServlet")
-public class EventSerchServlet extends HttpServlet {
+@WebServlet("/EventSearchServlet")
+public class EventSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EventSerchServlet() {
+    public EventSearchServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,16 +39,22 @@ public class EventSerchServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println(request.getParameter("page"));
+	}
+	
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		//PrintWriter out = response.getWriter();
-		//JSONObject json = JSONObject.fromObject(events);
-		//out.println(json.toString());
+		response.setContentType("text/html; charset=UTF-8");
+
+		String startTime = request.getParameter("startTime");
+		String endTime = request.getParameter("endTime");
+		String keyWord = request.getParameter("keyWord");
+		List<Event> events = new EventDao().search(startTime, endTime, keyWord);
 		
-		List<Event> events = new EventDao().search(request.getParameter("startTime"), request.getParameter("endTime"));
-		int count = new EventDao().searchTotal();
+		int count = 1;
 		StringBuffer sb = new StringBuffer();
-		String trFormat1 = "{\"code\":0,\"msg\":\"\",\"count\":0,\"data\":[";
+		String trFormat1 = "{\"code\":0,\"msg\":\"\",\"count\":%d,\"data\":[";
 		String tr1 = String.format(trFormat1, count);
 		sb.append(tr1);
 		

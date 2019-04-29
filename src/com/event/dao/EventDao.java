@@ -98,7 +98,7 @@ public class EventDao {
 		return events;
 	}
 	
-	//查看事件单数量
+	//查看全部事件单的数量
 	public int total() {
 		String sql = "SELECT COUNT(*) FROM `oa-event`";
 		int totalCount = 0;
@@ -167,53 +167,92 @@ public class EventDao {
 		}
 	}
 	
-	//根据occ-time字段查看事件单
-	public List<Event> search(String startTime, String endTime) {
+	//事件单搜索功能
+	public List<Event> search(String startTime, String endTime, String keyWord) {
 		List<Event> events = new ArrayList<Event>();
-		String sql = "select * from `oa-event` where `occ-time` between ? and ?";
-		try(Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(sql);){
-			ps.setString(1, startTime);
-			ps.setString(2, endTime);
-			ResultSet rs = ps.executeQuery();
-			while(rs.next()) {
-				Event event = new Event();
-				String occTime = rs.getString(2);
-				String locale = rs.getString(3);
-				String department = rs.getString(4);
-				String level = rs.getString(5);
-				String discPerson = rs.getString(6);
-				String discTime = rs.getString(7);
-				String handlePerson = rs.getString(8);
-				String eventDesc = rs.getString(9);
-				String effBus = rs.getString(10);
-				String incidence = rs.getString(11);
-				String effTime = rs.getString(12);
-				String eventHandle = rs.getString(13);
-				String eventReason = rs.getString(14);
-				String eventResult = rs.getString(15);
-				event.occTime = occTime;
-				event.locale = locale;
-				event.department = department;
-				event.level = level;
-				event.discPerson = discPerson;
-				event.discTime = discTime;
-				event.handlePerson = handlePerson;
-				event.eventDesc = eventDesc;
-				event.effBus = effBus;
-				event.incidence = incidence;
-				event.effTime = effTime;
-				event.eventHandle = eventHandle;
-				event.eventReason = eventReason;
-				event.eventResult = eventResult;
-				events.add(event);
+		if(startTime.equals("null")) {
+			startTime = "2000-01-01";
+		}
+		if(endTime.equals("null")) {
+			endTime = "2050-01-01";
+		}
+		if(keyWord.equals("null")) {
+			String sql = "select * from `oa-event` where `occ-time` between ? and ?";
+			try(Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(sql);){
+				ps.setString(1, startTime);
+				ps.setString(2, endTime);
+				ResultSet rs = ps.executeQuery();
+				while(rs.next()) {
+					Event event = new Event();
+					int id = rs.getInt(1);
+					String occTime = rs.getString(2);
+					String locale = rs.getString(3);
+					String department = rs.getString(4);
+					String level = rs.getString(5);
+					String discPerson = rs.getString(6);
+					String discTime = rs.getString(7);
+					String handlePerson = rs.getString(8);
+					String effBus = rs.getString(10);
+					String incidence = rs.getString(11);
+					String effTime = rs.getString(12);
+					event.id = id;
+					event.occTime = occTime.substring(0, occTime.length()-2);
+					event.locale = locale;
+					event.department = department;
+					event.level = level;
+					event.discPerson = discPerson;
+					event.discTime = discTime;
+					event.handlePerson = handlePerson;
+					event.effBus = effBus;
+					event.incidence = incidence;
+					event.effTime = effTime;
+					events.add(event);
+				}
+			}catch(SQLException e) {
+				e.printStackTrace();
 			}
-		}catch(SQLException e) {
-			e.printStackTrace();
+		}else {
+			String sql = "SELECT * FROM `oa-event` WHERE CONCAT(`disc-person`,`handle-person`,`event-desc`) LIKE ? AND `occ-time` between ? and ?";
+			try(Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(sql);){
+				keyWord = "%"+keyWord+"%";
+				ps.setString(1, keyWord);
+				ps.setString(2, startTime);
+				ps.setString(3, endTime);
+				ResultSet rs = ps.executeQuery();
+				while(rs.next()) {
+					Event event = new Event();
+					int id = rs.getInt(1);
+					String occTime = rs.getString(2);
+					String locale = rs.getString(3);
+					String department = rs.getString(4);
+					String level = rs.getString(5);
+					String discPerson = rs.getString(6);
+					String discTime = rs.getString(7);
+					String handlePerson = rs.getString(8);
+					String effBus = rs.getString(10);
+					String incidence = rs.getString(11);
+					String effTime = rs.getString(12);
+					event.id = id;
+					event.occTime = occTime.substring(0, occTime.length()-2);
+					event.locale = locale;
+					event.department = department;
+					event.level = level;
+					event.discPerson = discPerson;
+					event.discTime = discTime;
+					event.handlePerson = handlePerson;
+					event.effBus = effBus;
+					event.incidence = incidence;
+					event.effTime = effTime;
+					events.add(event);
+				}
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		return events;
 	}
 	
-	//查询结果的数量
+	//事件单，查询结果的数量
 	public int searchTotal() {
 		String sql = "SELECT COUNT(*) FROM (select * from `oa-event` where `occ-time` between ? and ?) as total";
 		int totalCount = 0;

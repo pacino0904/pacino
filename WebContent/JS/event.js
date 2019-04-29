@@ -1,3 +1,4 @@
+//事件单保存
 function save() {
 	var nowTime = new Date();
 	var tjsj = nowTime.getFullYear()+"-"+(nowTime.getMonth()+1)+"-"+nowTime.getDate()+" "+nowTime.getHours()+":"+nowTime.getMinutes()+":"+nowTime.getSeconds();
@@ -13,6 +14,7 @@ function save() {
 	})
 }
 
+//变更申请单保存
 function bgsqSave() {
 	var lxRadios = document.getElementsByName('bglx');
 	var bglx;
@@ -43,6 +45,7 @@ function bgsqSave() {
 	})
 }
 
+//查看事件单详情
 function detail(dataid) {
 	var param = "id=" + dataid;
 	$.ajax({
@@ -70,6 +73,7 @@ function detail(dataid) {
 	})
 }
 
+//事件单删除
 function eventDelete(dataid) {
 	var param = "id=" + dataid;
 	$.ajax({
@@ -83,8 +87,28 @@ function eventDelete(dataid) {
 	})
 }
 
-function eventSearch(startTime, endTime) {
-	var param = "startTime=" + startTime + "&endTime=" + endTime;
+//事件单搜索功能
+function eventSearch() { 
+	var startTime;
+	if($("#start-time").val()){
+		startTime = $("#start-time").val();
+	}else{
+		startTime = null;
+	}
+	var endTime;
+	if($("#end-time").val()){
+		endTime = $("#end-time").val();
+	}else{
+		endTime = null;
+	}
+	var keyWord;
+	if($("#key-word").val()){
+		keyWord = $("#key-word").val();
+	}else{
+		keyWord = null;
+	}
+	
+	var param = "startTime=" + startTime + "&endTime=" + endTime + "&keyWord=" + keyWord;
 	$.ajax({
 		type: "POST",
 		url: "/myproject/searchEvent",
