@@ -306,5 +306,4 @@ public class EventDao {
 		}
 		return todayCount;
 	}
-	
 }
