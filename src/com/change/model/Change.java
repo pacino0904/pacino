@@ -13,6 +13,20 @@ public class Change {
 	public String bgyy;
 	public String bgfa;
 	public String bghtfa;
+	public String tjsj;
+	public String eventNumber;
+	public String getTjsj() {
+		return tjsj;
+	}
+	public void setTjsj(String tjsj) {
+		this.tjsj = tjsj;
+	}
+	public String getEventNumber() {
+		return eventNumber;
+	}
+	public void setEventNumber(String eventNumber) {
+		this.eventNumber = eventNumber;
+	}
 	public int getId() {
 		return id;
 	}

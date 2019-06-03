@@ -21,7 +21,7 @@ public class ChangeDao {
 	}
 	
 	public void add(Change change){
-		String sql = "insert into `oa-change` values(null,?,?,?,?,?,?,?,?,?,?,?);";
+		String sql = "insert into `oa-change` values(null,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 		try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(sql);){
 			ps.setString(1, change.bglx);
 			ps.setString(2, change.bgxm);
@@ -34,6 +34,8 @@ public class ChangeDao {
 			ps.setString(9, change.bgyy);
 			ps.setString(10, change.bgfa);
 			ps.setString(11, change.bghtfa);
+			ps.setString(12, change.tjsj);
+			ps.setString(13, change.eventNumber);
 			
 			ps.execute();
 		}catch(SQLException e) {

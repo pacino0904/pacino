@@ -99,15 +99,19 @@
                     <td colspan="4">
                         <div class="layui-inline">
                             <div class="layui-input-inline">
-                                <input type="text" class="layui-input jhkssj" id="time1" style="border: 0;width:130px;"
-                                    placeholder="           开始时间">
+                                <input type="text" class="layui-input jhkssj" id="time1" style="border: 0;width:130px;text-align:center;margin-right:10px;"
+                                    placeholder="开始时间">
                             </div>
                         </div>
-                        --------
                         <div class="layui-inline">
                             <div class="layui-input-inline">
-                                <input type="text" class="layui-input jhjssj" id="time2" style="border: 0;width:130px;"
-                                    placeholder=" 结束时间">
+                            	<div style="width:40px;text-align:center;">------</div>
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input jhjssj" id="time2" style="border: 0;width:130px;text-align:center;"
+                                    placeholder="结束时间">
                             </div>
                         </div>
                     </td>
@@ -194,15 +198,19 @@
                     <td colspan="3">
                         <div class="layui-inline">
                             <div class="layui-input-inline">
-                                <input type="text" class="layui-input occTime" id="time4" style="border: 0;width:140px;"
-                                    placeholder="           开始时间">
+                                <input type="text" class="layui-input" id="time4" style="border: 0;width:100px;text-align:center;margin-right:10px;"
+                                    placeholder="开始时间">
                             </div>
                         </div>
-                        -----
                         <div class="layui-inline">
                             <div class="layui-input-inline">
-                                <input type="text" class="layui-input occTime" id="time5" style="border: 0;width:140px;"
-                                    placeholder="    结束时间">
+                            	<div style="width:40px;text-align:center;">------</div>
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" id="time5" style="border: 0;width:100px;text-align:center;"
+                                    placeholder="结束时间">
                             </div>
                         </div>
                     </td>
@@ -263,27 +271,17 @@
             laydate.render({
                 elem: '#time1'
                 , type: 'date'
-                , format: 'yyyy年MM月dd日'
+                , trigger: 'click'
             });
             laydate.render({
                 elem: '#time2'
                 , type: 'date'
-                , format: 'yyyy年MM月dd日'
+                , trigger: 'click'
             });
             laydate.render({
                 elem: '#time3'
                 , type: 'date'
-                , format: 'yyyy年MM月dd日'
-            });
-            laydate.render({
-                elem: '#time4'
-                , type: 'date'
-                , format: 'yyyy年MM月dd日'
-            });
-            laydate.render({
-                elem: '#time5'
-                , type: 'date'
-                , format: 'yyyy年MM月dd日'
+                , trigger: 'click'
             });
         })
         layui.use('layer', function () {
@@ -295,7 +293,7 @@
                     , btn: ['确认', '修改']
                     , yes: function (index, layero) {
                         //按钮【按钮一】的回调
-                        save()
+                        bgsqSave()
                             , layer.msg('提交成功！', {
                                 icon: 1,
                                 time: 1000 //2秒关闭（如果不配置，默认是3秒）

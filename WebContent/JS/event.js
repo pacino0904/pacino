@@ -16,6 +16,9 @@ function save() {
 
 //变更申请单保存
 function bgsqSave() {
+	var nowTime = new Date();
+	var tjsj = nowTime.getFullYear()+"-"+(nowTime.getMonth()+1)+"-"+nowTime.getDate()+" "+nowTime.getHours()+":"+nowTime.getMinutes()+":"+nowTime.getSeconds();
+	var sjdbh = 2018121901;
 	var lxRadios = document.getElementsByName('bglx');
 	var bglx;
 	for (var i = 0, length = lxRadios.length; i < length; i++) {
@@ -33,7 +36,7 @@ function bgsqSave() {
 		}
 	}
 
-	var param = "bglx=" + bglx + "&bgxm=" + $(".bgxm").val() + "&bgdj=" + bgdj + "&jhssr=" + $(".jhssr").val() + "&jhkssj=" + $(".jhkssj").val() + "&jhjssj=" + $(".jhjssj").val() + "&bgsqr=" + $(".bgsqr").val() + "&sqsj=" + $(".sqsj").val() + "&bgyy=" + $(".bgyy").val() + "&bgfa=" + $(".bgfa").val() + "&bghtfa=" + $(".bghtfa").val();
+	var param = "bglx=" + bglx + "&bgxm=" + $(".bgxm").val() + "&bgdj=" + bgdj + "&jhssr=" + $(".jhssr").val() + "&jhkssj=" + $(".jhkssj").val() + "&jhjssj=" + $(".jhjssj").val() + "&bgsqr=" + $(".bgsqr").val() + "&sqsj=" + $(".sqsj").val() + "&bgyy=" + $(".bgyy").val() + "&bgfa=" + $(".bgfa").val() + "&bghtfa=" + $(".bghtfa").val() + "&tjsj=" + tjsj + "&eventNumber=" + sjdbh;
 	$.ajax({
 		type: "POST",
 		url: "/myproject/addChange",
