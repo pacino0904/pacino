@@ -87,7 +87,7 @@ public class TestShiro {
     				else
     					System.out.printf("%s\t 不拥有权限: %s\t%n",user.getName(),permit);
     			}
-    		}	
+    		}
     	}
     }
     
@@ -135,8 +135,4 @@ public class TestShiro {
 		
 		return subject.isAuthenticated();
 	}
-    
-    
-    
-    
 }
