@@ -41,12 +41,12 @@
         </ul>
         <ul class="layui-nav right" lay-filter="">
             <li class="layui-nav-item">
-                <a href="javascript:;">admin</a>
+                <a href="javascript:;" id="username">admin</a>
                 <dl class="layui-nav-child">
                     <!-- 二级菜单 -->
                     <dd><a onclick="x_admin_show('个人信息','http://www.baidu.com')">个人信息</a></dd>
                     <dd><a onclick="x_admin_show('切换帐号','http://www.baidu.com')">切换帐号</a></dd>
-                    <dd><a href="./login.html">退出</a></dd>
+                    <dd><a href="doLogout">退出</a></dd>
                 </dl>
             </li>
             <li class="layui-nav-item to-index"><a href="/">前台首页</a></li>
@@ -269,6 +269,22 @@
         <div class="copyright" style="float:left;color:#fff">Copyright ©2018 润泽科技 v1.0 All Rights Reserved</div>
     </div>
     <!-- 底部结束 -->
+    
+    
+    <script>
+    function getUsername() {
+    	var param = "";
+        $.ajax({
+          type: "POST",
+          url: "/myproject/getUsername",
+          data: param,
+  		dataType: "text",
+  		success: function (data) {
+  			$("#username").html(data);
+  		}
+        })
+      }
+    getUsername();
+    </script>
 </body>
-
 </html>

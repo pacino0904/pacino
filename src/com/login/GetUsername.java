@@ -1,33 +1,25 @@
-package com.event.servlet;
+package com.login;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.shiro.SecurityUtils;
 
-import com.event.dao.EventDao;
-import com.event.model.Event;
-
-import net.sf.json.JSONObject;
-
-
 /**
- * Servlet implementation class DetailServlet
+ * Servlet implementation class getUsername
  */
-@WebServlet("/DetailServlet")
-public class DetailServlet extends HttpServlet {
+public class GetUsername extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DetailServlet() {
+    public GetUsername() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -48,12 +40,8 @@ public class DetailServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
-		Event detailEvent = new Event();
-		detailEvent.setId(Integer.parseInt(request.getParameter("id")));
-		new EventDao().detail(detailEvent);
-		
-		JSONObject json = JSONObject.fromObject(detailEvent);
-		out.println(json.toString());
+		String loginName = (String) SecurityUtils.getSubject().getPrincipal();
+		out.println(loginName);
 	}
 
 }

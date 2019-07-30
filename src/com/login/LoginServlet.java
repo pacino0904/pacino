@@ -1,6 +1,8 @@
 package com.login;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,15 +23,13 @@ public class LoginServlet extends HttpServlet {
 		
 		String name = req.getParameter("name");  
         String password = req.getParameter("password");
-        
         Subject subject = SecurityUtils.getSubject();  
         UsernamePasswordToken token = new UsernamePasswordToken(name, password);  
         try {  
             subject.login(token);
             Session session=subject.getSession();
             session.setAttribute("subject", subject);
-            
-            resp.sendRedirect("");
+            resp.sendRedirect("index.html");
         } catch (AuthenticationException e) {
             req.setAttribute("error", "—È÷§ ß∞‹");  
             req.getRequestDispatcher("login.html").forward(req, resp); 

@@ -14,7 +14,7 @@
     <body onload="getTime()">
     <div class="x-body layui-anim layui-anim-up">
         <blockquote class="layui-elem-quote">欢迎管理员：
-            <span class="x-red">admin</span>！当前时间:<span id="date1"></span></blockquote>
+            <span class="x-red" id="username"></span>！当前时间:<span id="date1"></span></blockquote>
         <fieldset class="layui-elem-field">
             <legend>数据统计</legend>
             <div class="layui-field-box">
@@ -101,6 +101,19 @@
         </fieldset>
     </div>
     <script>
+    function getUsername() {
+    	var param = "";
+        $.ajax({
+          type: "POST",
+          url: "/myproject/getUsername",
+          data: param,
+  		dataType: "text",
+  		success: function (data) {
+  			$("#username").html(data);
+  		}
+        })
+      }
+    getUsername();
     function getTime() {
         var dateObj = new Date();
         var year = dateObj.getFullYear();//年
@@ -131,7 +144,6 @@
         document.getElementById("date1").innerHTML = newDate;//在div中写入时间
         setTimeout('getTime()', 500);//每隔500ms执行一次getTime()
     }
-    
 	</script>
     </body>
 </html>
