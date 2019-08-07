@@ -3,6 +3,7 @@ package com.change.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.change.model.Change;
@@ -41,6 +42,20 @@ public class ChangeDao {
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public int total() {
+		String sql = "SELECT COUNT(*) FROM `oa-change`";
+		int totalCount = 0;
+		try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(sql);){
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				totalCount = rs.getInt(1);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return totalCount;
 	}
 	
 	public void searchNumber() {

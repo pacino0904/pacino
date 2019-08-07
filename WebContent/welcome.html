@@ -28,21 +28,21 @@
                                             <a href="javascript:;" class="x-admin-backlog-body">
                                                 <h3>事件数</h3>
                                                 <p>
-                                                    <cite>18</cite></p>
+                                                    <cite id="eventSum"></cite></p>
                                             </a>
                                         </li>
                                         <li class="layui-col-xs2">
-                                            <a href="javascript:;" class="x-admin-backlog-body">
+                                            <a href="javascript:;" class="x-admin-backlog-body" >
                                                 <h3>设备变更数</h3>
                                                 <p>
-                                                    <cite>7</cite></p>
+                                                    <cite id="changeSum"></cite></p>
                                             </a>
                                         </li>
                                         <li class="layui-col-xs2">
                                             <a href="javascript:;" class="x-admin-backlog-body">
                                                 <h3>人员数</h3>
                                                 <p>
-                                                    <cite>161</cite></p>
+                                                    <cite id="memberSum"></cite></p>
                                             </a>
                                         </li>
                                     </ul>
@@ -114,6 +114,21 @@
         })
       }
     getUsername();
+    function IndexData() {
+    	var param = "";
+        $.ajax({
+          type: "POST",
+          url: "/myproject/indexData",
+          data: param,
+  		dataType: "json",
+  		success: function (data) {
+  			$("#eventSum").html(data.eventSum);
+  			$("#changeSum").html(data.changeSum);
+  			$("#memberSum").html(data.memberSum);
+  		}
+        })
+      }
+    IndexData();
     function getTime() {
         var dateObj = new Date();
         var year = dateObj.getFullYear();//年

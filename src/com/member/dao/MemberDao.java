@@ -14,7 +14,6 @@ public class MemberDao {
 	public MemberDao() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			System.out.println("加载了");
 		}catch(ClassNotFoundException e) {
 			e.printStackTrace();
 			System.out.println("没加载");

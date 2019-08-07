@@ -89,6 +89,14 @@
     <servlet-name>LoginServlet</servlet-name>
     <url-pattern>/loginServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>IndexData</servlet-name>
+    <servlet-class>com.tools.IndexData</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>IndexData</servlet-name>
+    <url-pattern>/indexData</url-pattern>
+  </servlet-mapping>
   <listener>
     <listener-class>org.apache.shiro.web.env.EnvironmentLoaderListener</listener-class>
   </listener>
