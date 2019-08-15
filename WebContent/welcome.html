@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>欢迎面板</title>
-        <meta name="renderer" content="webkit">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
-        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-        <link rel="stylesheet" href="./css/font.css">
-        <link rel="stylesheet" href="./css/xadmin.css">
-        <script type="text/javascript" src="./JS/jquery-1.3.2.min.js"></script>
-    </head>
-    <body onload="getTime()">
+
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎面板</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+        content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="./css/font.css">
+    <link rel="stylesheet" href="./css/xadmin.css">
+    <script type="text/javascript" src="./JS/jquery-1.3.2.min.js"></script>
+</head>
+
+<body onload="getTime()">
     <div class="x-body layui-anim layui-anim-up">
         <blockquote class="layui-elem-quote">欢迎管理员：
             <span class="x-red" id="username"></span>！当前时间:<span id="date1"></span></blockquote>
@@ -21,7 +24,8 @@
                 <div class="layui-col-md12">
                     <div class="layui-card">
                         <div class="layui-card-body">
-                            <div class="layui-carousel x-admin-carousel x-admin-backlog" lay-anim="" lay-indicator="inside" lay-arrow="none" style="width: 100%; height: 90px;">
+                            <div class="layui-carousel x-admin-carousel x-admin-backlog" lay-anim=""
+                                lay-indicator="inside" lay-arrow="none" style="width: 100%; height: 90px;">
                                 <div carousel-item="">
                                     <ul class="layui-row layui-col-space10 layui-this">
                                         <li class="layui-col-xs2">
@@ -32,7 +36,7 @@
                                             </a>
                                         </li>
                                         <li class="layui-col-xs2">
-                                            <a href="javascript:;" class="x-admin-backlog-body" >
+                                            <a href="javascript:;" class="x-admin-backlog-body">
                                                 <h3>设备变更数</h3>
                                                 <p>
                                                     <cite id="changeSum"></cite></p>
@@ -59,7 +63,7 @@
                 <table class="layui-table" lay-skin="line">
                     <tbody>
                         <tr>
-                            <td >
+                            <td>
                                 <a class="x-a" href="/" target="_blank">润泽科技 1.0上线了</a>
                             </td>
                         </tr>
@@ -74,13 +78,16 @@
                     <tbody>
                         <tr>
                             <th>新增事件</th>
-                            <td>admin</td></tr>
+                            <td>admin</td>
+                        </tr>
                         <tr>
                             <th>新增人员</th>
-                            <td>admin</td></tr>
+                            <td>admin</td>
+                        </tr>
                         <tr>
                             <th>新增变更</th>
-                            <td>admin</td></tr>
+                            <td>admin</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -101,64 +108,65 @@
         </fieldset>
     </div>
     <script>
-    function getUsername() {
-    	var param = "";
-        $.ajax({
-          type: "POST",
-          url: "/myproject/getUsername",
-          data: param,
-  		dataType: "text",
-  		success: function (data) {
-  			$("#username").html(data);
-  		}
-        })
-      }
-    getUsername();
-    function IndexData() {
-    	var param = "";
-        $.ajax({
-          type: "POST",
-          url: "/myproject/indexData",
-          data: param,
-  		dataType: "json",
-  		success: function (data) {
-  			$("#eventSum").html(data.eventSum);
-  			$("#changeSum").html(data.changeSum);
-  			$("#memberSum").html(data.memberSum);
-  		}
-        })
-      }
-    IndexData();
-    function getTime() {
-        var dateObj = new Date();
-        var year = dateObj.getFullYear();//年
-        var month = dateObj.getMonth()+1;//月  (注意：月份+1)
-        var date = dateObj.getDate();//日
-        var day = dateObj.getDay();
-        var weeks = ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
-        var week = weeks[day];//根据day值，获取星期数组中的星期数。
-        var hours = dateObj.getHours();//小时
-        var minutes = dateObj.getMinutes();//分钟
-        var seconds = dateObj.getSeconds();//秒
-        if(month<10){
-            month = "0"+month;
+        function getUsername() {
+            var param = "";
+            $.ajax({
+                type: "POST",
+                url: "/myproject/getUsername",
+                data: param,
+                dataType: "text",
+                success: function (data) {
+                    $("#username").html(data);
+                }
+            })
         }
-        if(date<10){
-            date = "0"+date;
+        getUsername();
+        function IndexData() {
+            var param = "";
+            $.ajax({
+                type: "POST",
+                url: "/myproject/indexData",
+                data: param,
+                dataType: "json",
+                success: function (data) {
+                    $("#eventSum").html(data.eventSum);
+                    $("#changeSum").html(data.changeSum);
+                    $("#memberSum").html(data.memberSum);
+                }
+            })
         }
-        if(hours<10){
-            hours = "0"+hours;
+        IndexData();
+        function getTime() {
+            var dateObj = new Date();
+            var year = dateObj.getFullYear();//年
+            var month = dateObj.getMonth() + 1;//月  (注意：月份+1)
+            var date = dateObj.getDate();//日
+            var day = dateObj.getDay();
+            var weeks = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+            var week = weeks[day];//根据day值，获取星期数组中的星期数。
+            var hours = dateObj.getHours();//小时
+            var minutes = dateObj.getMinutes();//分钟
+            var seconds = dateObj.getSeconds();//秒
+            if (month < 10) {
+                month = "0" + month;
+            }
+            if (date < 10) {
+                date = "0" + date;
+            }
+            if (hours < 10) {
+                hours = "0" + hours;
+            }
+            if (minutes < 10) {
+                minutes = "0" + minutes;
+            }
+            if (seconds < 10) {
+                seconds = "0" + seconds;
+            }
+            var newDate = "&nbsp &nbsp" + year + "年" + month + "月" + date + "日" + hours + ":" + minutes + ":" + seconds + "&nbsp &nbsp" + week;
+            document.getElementById("date1").innerHTML = newDate;//在div中写入时间
+            setTimeout('getTime()', 500);//每隔500ms执行一次getTime()
         }
-        if(minutes<10){
-            minutes = "0"+minutes;
-        }
-        if(seconds<10){
-            seconds = "0"+seconds;
-        }
-        var newDate = "&nbsp &nbsp" + year+"年"+month+"月"+date+"日"+hours+":"+minutes+":"+seconds+"&nbsp &nbsp"+week;
-        document.getElementById("date1").innerHTML = newDate;//在div中写入时间
-        setTimeout('getTime()', 500);//每隔500ms执行一次getTime()
-    }
-	</script>
-    </body>
+    </script>
+</body>
+
 </html>

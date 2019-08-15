@@ -1,30 +1,27 @@
-package com.tools;
+package com.change.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.change.dao.ChangeDao;
-import com.event.dao.EventDao;
-import com.google.gson.Gson;
-import com.member.dao.MemberDao; 
 
 /**
- * Servlet implementation class IndexData
+ * Servlet implementation class ChangeBgdbhServlet
  */
-public class IndexData extends HttpServlet {
+@WebServlet("/ChangeBgdbhServlet")
+public class ChangeBgdbhServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public IndexData() {
+    public ChangeBgdbhServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,21 +35,15 @@ public class IndexData extends HttpServlet {
 	}
 
 	/**
-	 * @return 
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
-		int eventSum = new EventDao().total();
-		int changeSum = new ChangeDao().total();
-		int memberSum = new MemberDao().total();
-		Map indexdata = new HashMap();
-		indexdata.put("eventSum", eventSum);
-		indexdata.put("changeSum", changeSum);
-		indexdata.put("memberSum", memberSum);
-		out.println(new Gson().toJson(indexdata));
+		String startTime = request.getParameter("startTime");
+		String endTime = request.getParameter("endTime");
+		int count = new ChangeDao().bgdbh(startTime, endTime);
+		out.println(count);
 	}
-
 }

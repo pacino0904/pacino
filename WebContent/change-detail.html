@@ -25,42 +25,6 @@
 </head>
 
 <body>
-    <script>
-        var bgdbh;
-        function bhSearch() {
-            var nowTime = new Date();
-            var startTime = nowTime.getFullYear() + "-" + (nowTime.getMonth() + 1) + "-" + nowTime.getDate() + " " + 0 + ":" + 0 + ":" + 0;
-            var endTime = nowTime.getFullYear() + "-" + (nowTime.getMonth() + 1) + "-" + nowTime.getDate() + " " + 23 + ":" + 59 + ":" + 59;
-            var param = "startTime=" + startTime + "&endTime=" + endTime;
-            $.ajax({
-                type: "POST",
-                url: "/myproject/changeBgdbh",
-                data: param,
-                dataType: "json",
-                success: function (data) {
-                    var month = nowTime.getMonth() + 1;
-                    if (month < 10) {
-                        month = '0' + month;
-                    }
-                    var day = nowTime.getDate();
-                    if (day < 10) {
-                        day = '0' + day;
-                    }
-                    if (data == 0) {
-                        bgdbh = 'RZBG-' + nowTime.getFullYear() + month + day + '01';
-                    }
-                    else {
-                        if (data < 10) {
-                            data = '0' + (data + 1);
-                        }
-                        bgdbh = 'RZBG-' + nowTime.getFullYear() + month + day + data;
-                    }
-                    $("#bgdbhTd").html(bgdbh);
-                }
-            })
-        }
-        bhSearch();
-    </script>
     <div class="x-nav">
         <span class="layui-breadcrumb">
             <a href="">首页</a>
@@ -85,7 +49,7 @@
                 </tr>
                 <tr>
                     <td colspan="6" style="font-size: 15px; height: 30px; background-color: #F0F8FF">编号:<span
-                            id="bgdbhTd"></span></td>
+                            id="changeNumber"></span></td>
                 </tr>
                 <tr>
                     <td style="width: 80px;">变更状态</td>
@@ -96,48 +60,27 @@
                 <tr style="height:40px">
                     <td rowspan="11">变更申请</td>
                     <td onclick="bgsqSave();">变更类型</td>
-                    <td colspan="4">
-                        <form class="layui-form" action="">
-                            <div class="layui-input-block" style="margin-left:0">
-                                <input type="radio" name="bglx" value="设备调整" title="设备调整" />
-                                <input type="radio" name="bglx" value="例行维护" title="例行维护" />
-                                <input type="radio" name="bglx" value="其他" title="其他" />
-                            </div>
-                        </form>
+                    <td colspan="4" id="bglx">
                     </td>
                 </tr>
                 <tr style="height:40px;">
                     <td>变更项目</td>
-                    <td>
-                        <input type="text" class="bgxm"
-                            style="width: 100px; height: 30px; border: 0;text-align: center;">
+                    <td id="bgxm">
                     </td>
                     <td>变更等级</td>
-                    <td colspan="2">
-                        <form class="layui-form" action="">
-                            <div class="layui-input-block" style="margin-left:0">
-                                <input type="radio" name="bgdj" value="高" title="高" />
-                                <input type="radio" name="bgdj" value="中" title="中" />
-                                <input type="radio" name="bgdj" value="低" title="低" />
-                            </div>
-                        </form>
+                    <td colspan="2" id="bgdj">
                     </td>
                 </tr>
                 <tr style="height:40px;">
                     <td>计划实施人</td>
-                    <td colspan="4">
-                        <input type="text" class="jhssr"
-                            style="width: 500px; height: 30px; border: 0; padding-left: 10px;">
+                    <td colspan="4" id="jhssr">
                     </td>
                 </tr>
                 <tr style="height:42px;">
                     <td>计划实施时间</td>
                     <td colspan="4">
                         <div class="layui-inline">
-                            <div class="layui-input-inline">
-                                <input type="text" class="layui-input jhkssj" id="time1"
-                                    style="border: 0;width:130px;text-align:center;margin-right:10px;"
-                                    placeholder="开始时间">
+                            <div class="layui-input-inline" id="jhkssj">
                             </div>
                         </div>
                         <div class="layui-inline">
@@ -146,51 +89,32 @@
                             </div>
                         </div>
                         <div class="layui-inline">
-                            <div class="layui-input-inline">
-                                <input type="text" class="layui-input jhjssj" id="time2"
-                                    style="border: 0;width:130px;text-align:center;" placeholder="结束时间">
+                            <div class="layui-input-inline" id="jhjssj">
                             </div>
                         </div>
                     </td>
                 </tr>
                 <tr style="height:40px;">
                     <td>变更申请人</td>
-                    <td>
-                        <input type="text" class="bgsqr"
-                            style="width: 100px; height: 30px; border: 0;text-align: center;">
+                    <td id="jhsqr">
                     </td>
                     <td>申请时间</td>
-                    <td colspan="2">
-                        <div class="layui-inline">
-                            <div class="layui-input-inline">
-                                <input type="text" class="layui-input sqsj" id="time3" style="border: 0;width:140px;"
-                                    placeholder="请选择时间">
-                            </div>
-                        </div>
+                    <td colspan="2" id="sqsj">
                     </td>
                 </tr>
                 <tr style="height:40px;">
                     <td>变更原因</td>
-                    <td colspan="4" style="overflow:hidden; padding: 10px">
-                        <textarea
-                            style="border-style:none; min-width: 540px; max-width: 540px; min-height: 35px; margin-bottom: -5px; overflow:hidden;"
-                            class="bgyy" autoHeight="true"></textarea>
+                    <td colspan="4" style="padding: 10px" id="bgyy">
                     </td>
                 </tr>
                 <tr style="height:40px;">
                     <td>变更方案</td>
-                    <td colspan="4" style="overflow:hidden; padding: 10px">
-                        <textarea
-                            style="border-style:none; min-width: 540px; max-width: 540px; min-height: 35px; margin-bottom: -5px; overflow:hidden;"
-                            class="bgfa" autoHeight="true"></textarea>
+                    <td colspan="4" style="padding: 10px" id="bgfa">
                     </td>
                 </tr>
                 <tr style="height:40px;">
                     <td>变更回退方案</td>
-                    <td colspan="4" style="overflow:hidden; padding: 10px">
-                        <textarea
-                            style="border-style:none; min-width: 540px; max-width: 540px; min-height: 35px; margin-bottom: -5px; overflow:hidden;"
-                            class="bghtfa" autoHeight="true"></textarea>
+                    <td colspan="4" style="padding: 10px" id="bghtfa">
                     </td>
                 </tr>
                 <tr>
@@ -298,80 +222,23 @@
                     <td colspan="5"></td>
                 </tr>
             </table>
+            <div id="controller" style="width: 150px;margin:20px auto;">
+                <button id="print" class="layui-btn layui-btn-radius">打印</button>
+                <button id="ccc" class="layui-btn layui-btn-radius">修改</button>
+            </div>
         </div>
-        <div style="width: 760px;margin:10px auto;">
-            <button id="confirm" class="layui-btn layui-btn-radius" style="margin-left: 370px;">提交</button>
-        </div>
+        <script>
+            var dataid = window.location.search.substring(1);
+            changeDetail(dataid);
+            $("#print").click(function () {
+                $("#content").css("margin-top", "50px");
+                $("#controller").css("display", "none");
+                window.print();
+                $("#content").css("margin-top", "0");
+                $("#controller").css("display", "block");
+            });
+        </script>
     </div>
-    <script>
-        layui.use('laydate', function () {
-            var laydate = layui.laydate;
-            laydate.render({
-                elem: '#time1'
-                , type: 'date'
-                , trigger: 'click'
-            });
-            laydate.render({
-                elem: '#time2'
-                , type: 'date'
-                , trigger: 'click'
-            });
-            laydate.render({
-                elem: '#time3'
-                , type: 'date'
-                , trigger: 'click'
-            });
-        })
-        layui.use('layer', function () {
-            var layer = layui.layer;
-            $("#confirm").click(function () {
-                layer.open({
-                    title: '事件单'
-                    , content: '是否提交基础设施变更工作单？'
-                    , btn: ['确认', '修改']
-                    , yes: function (index, layero) {
-                        //按钮【按钮一】的回调
-                        bgsqSave()
-                            , layer.msg('提交成功！', {
-                                icon: 1,
-                                time: 1000 //2秒关闭（如果不配置，默认是3秒）
-                            })
-                            , setTimeout(function () {
-                                window.location.reload();
-                            }, 1000)
-                    }
-                    , btn2: function (index, layero) {
-
-                    }
-                    , cancel: function () {
-                        //右上角关闭回调
-                        //return false 开启该代码可禁止点击该按钮关闭
-                    }
-                    , shadeClose: true
-                });
-            });
-        });
-
-        //事件单编号格式：2019022001（时间+编号），查询当天的事件单数，+1即为当前编号
-        //不相同说明当日没有提交事件单，则生成当日时间+01；相同则提取最新事件单编号，进行自增
-
-        $(function () {
-            $.fn.autoHeight = function () {
-                function autoHeight(elem) {
-                    elem.style.height = 'auto';
-                    elem.scrollTop = 0; //防抖动
-                    elem.style.height = elem.scrollHeight + 'px';
-                }
-                this.each(function () {
-                    autoHeight(this);
-                    $(this).on('keyup', function () {
-                        autoHeight(this);
-                    });
-                });
-            }
-            $('textarea[autoHeight]').autoHeight();
-        })
-    </script>
 </body>
 
 </html>

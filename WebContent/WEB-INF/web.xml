@@ -66,6 +66,46 @@
     <url-pattern>/addChange</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>ChangeListServlet</servlet-name>
+    <servlet-class>com.change.servlet.ChangeListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ChangeListServlet</servlet-name>
+    <url-pattern>/listChange</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ChangeSearchServlet</servlet-name>
+    <servlet-class>com.change.servlet.ChangeSearchServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ChangeSearchServlet</servlet-name>
+    <url-pattern>/searchChange</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ChangeBgdbhServlet</servlet-name>
+    <servlet-class>com.change.servlet.ChangeBgdbhServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ChangeBgdbhServlet</servlet-name>
+    <url-pattern>/changeBgdbh</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ChangeDetailServlet</servlet-name>
+    <servlet-class>com.change.servlet.ChangeDetailServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ChangeDetailServlet</servlet-name>
+    <url-pattern>/detailChange</url-pattern>
+  </servlet-mapping>
+    <servlet>
+    <servlet-name>ChangeDeleteServlet</servlet-name>
+    <servlet-class>com.change.servlet.ChangeDeleteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ChangeDeleteServlet</servlet-name>
+    <url-pattern>/deleteChange</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>EventSjdbh</servlet-name>
     <servlet-class>com.event.servlet.EventSjdbhServlet</servlet-class>
   </servlet>

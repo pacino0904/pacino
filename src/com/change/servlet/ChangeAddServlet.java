@@ -28,7 +28,7 @@ public class ChangeAddServlet extends HttpServlet {
 		change.setBgfa(request.getParameter("bgfa"));
 		change.setBghtfa(request.getParameter("bghtfa"));
 		change.setTjsj(request.getParameter("tjsj"));
-		change.setEventNumber(request.getParameter("eventNumber"));
+		change.setChangeNumber(request.getParameter("changeNumber"));
 		new ChangeDao().add(change);
 	}
 }

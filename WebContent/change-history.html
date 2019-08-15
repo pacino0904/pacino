@@ -21,8 +21,8 @@
 	<div class="x-nav">
 		<span class="layui-breadcrumb">
 			<a href="">首页</a>
-			<a href="">事件管理</a>
-			<a><cite>事件历史</cite></a>
+			<a href="">变更管理</a>
+			<a><cite>变更历史</cite></a>
 		</span>
 		<a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
 			href="javascript:location.replace(location.href);" title="刷新">
@@ -39,7 +39,7 @@
 		<button class="layui-btn" id="search" data-type="reload" lay-filter="sreach"><i
 				class="layui-icon">&#xe615;</i></button>
 	</div>
-	<table id="eventHistory" lay-filter="test"></table>
+	<table id="changeHistory" lay-filter="test"></table>
 	<script type="text/html" id="barHandle">
 		<a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
 		<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
@@ -63,20 +63,21 @@
 		layui.use('table', function () {
 			var table = layui.table;
 			table.render({
-				elem: '#eventHistory'
-				, url: '/myproject/listEvent' //数据接口
+				elem: '#changeHistory'
+				, url: '/myproject/listChange' //数据接口
 				, page: false //开启分页
 				, cellMinWidth: 100 //全局定义常规单元格的最小宽度，
-				, id: "eventHistory"
+				, id: "changeHistory"
 				, cols: [[ //表头
-					{ field: 'occTime', title: '发生时间', width: 180, align: 'center', sort: true, fixed: 'left' }
-					, { field: 'locale', title: '发生地点', align: 'center', sort: true }
-					, { field: 'department', title: '专业部门', align: 'center', sort: true }
-					, { field: 'level', title: '严重程度', align: 'center', sort: true }
-					, { field: 'discPerson', title: '事件发现人', align: 'center' }
-					, { field: 'handlePerson', title: '事件处理参与人员', align: 'center', width: 160 }
-					, { field: 'effBus', title: '是否影响业务', align: 'center', sort: true, width: 140 }
-					, { field: 'incidence', title: '影响范围', align: 'center', }
+					{ field: 'bglx', title: '变更类型', align: 'center', sort: true, fixed: 'left' }
+					, { field: 'bgxm', title: '变更项目', align: 'center' }
+					, { field: 'bgdj', title: '变更等级', align: 'center', sort: true }
+					, { field: 'jhssr', title: '计划实施人', align: 'center', sort: true }
+					, { field: 'jhkssj', title: '计划实施时间', align: 'center', sort: true }
+					, { field: 'jhjssj', title: '计划结束时间', align: 'center', sort: true }
+					, { field: 'bgsqr', title: '变更申请人', align: 'center', sort: true }
+					, { field: 'sqsj', title: '申请时间', align: 'center', sort: true }
+					, { field: 'bgyy', title: '变更原因', align: 'center' }
 					, { fixed: 'right', title: '操作', toolbar: '#barHandle', align: 'center', width: 150 }
 				]]
 				, done: function (res, curr, count) {
@@ -105,9 +106,9 @@
 					keyWord = null;
 				}
 				var param = "startTime=" + startTime + "&endTime=" + endTime + "&keyWord=" + keyWord;
-				var url = '/myproject/searchEvent?' + param;
+				var url = '/myproject/searchChange?' + param;
 				console.log(url);
-				table.reload('eventHistory', {
+				table.reload('changeHistory', {
 					url: url
 				});
 			})
@@ -118,11 +119,11 @@
 				if (obj.event === 'del') {
 					layer.confirm('确认删除', function (index) {
 						obj.del();
-						eventDelete(data.id);
+						changeDelete(data.id);
 						layer.close(index);
 					});
 				} else if (obj.event === 'detail') {
-					$('#detailUrl', parent.document).attr("_href", "event-detail.html?" + data.id);
+					$('#detailUrl', parent.document).attr("_href", "change-detail.html?" + data.id);
 					$('#detail', parent.document).click();
 				}
 			});

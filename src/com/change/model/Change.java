@@ -14,18 +14,18 @@ public class Change {
 	public String bgfa;
 	public String bghtfa;
 	public String tjsj;
-	public String eventNumber;
+	public String changeNumber;
 	public String getTjsj() {
 		return tjsj;
 	}
 	public void setTjsj(String tjsj) {
 		this.tjsj = tjsj;
 	}
-	public String getEventNumber() {
-		return eventNumber;
+	public String getChangeNumber() {
+		return changeNumber;
 	}
-	public void setEventNumber(String eventNumber) {
-		this.eventNumber = eventNumber;
+	public void setChangeNumber(String changeNumber) {
+		this.changeNumber = changeNumber;
 	}
 	public int getId() {
 		return id;
