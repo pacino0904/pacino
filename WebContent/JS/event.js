@@ -1,8 +1,34 @@
+/**
+ * @funciton 转换textarea存入数据库的回车换行和空格  textarea ---  数据库,用val取数据，置换'\n'
+ */
+ function textareaTo(str){
+     var reg=new RegExp("\n","g");
+     var regSpace=new RegExp(" ","g");
+     
+     str = str.replace(reg,"<br>");
+     str = str.replace(regSpace,"&nbsp;");
+     
+     return str;
+ }
+
+ /**
+ * @funciton  数据库 ---  编辑页面  .val(str)
+ */
+ function toTextarea(str){
+     var reg=new RegExp("<br>","g");
+     var regSpace=new RegExp("&nbsp;","g");
+     
+     str = str.replace(reg,"\n");
+     str = str.replace(regSpace," ");
+     
+     return str;
+ }
+
 //事件单保存
 function save() {
 	var nowTime = new Date();
 	var tjsj = nowTime.getFullYear() + "-" + (nowTime.getMonth() + 1) + "-" + nowTime.getDate() + " " + nowTime.getHours() + ":" + nowTime.getMinutes() + ":" + nowTime.getSeconds();
-	var param = "occTime=" + $(".occTime").val() + "&locale=" + $(".didian").val() + $(".mozu").val() + "&department=" + $(".department").val() + "&level=" + $(".level").val() + "&discPerson=" + $(".discPerson").val() + "&discTime=" + $(".discTime").val() + "&handlePerson=" + $(".handlePerson").val() + "&eventDesc=" + $(".eventDesc").val() + "&effBus=" + $(".effBus").val() + "&incidence=" + $(".incidence").val() + "&effTime=" + $(".effTime").val() + "&eventHandle=" + $(".eventHandle").val() + "&eventReason=" + $(".eventReason").val() + "&eventResult=" + $(".eventResult").val() + "&tjsj=" + tjsj + "&eventNumber=" + sjdbh;
+	var param = "occTime=" + $(".occTime").val() + "&locale=" + $(".didian").val() + $(".mozu").val() + "&department=" + $(".department").val() + "&level=" + $(".level").val() + "&discPerson=" + $(".discPerson").val() + "&discTime=" + $(".discTime").val() + "&handlePerson=" + $(".handlePerson").val() + "&eventDesc=" + textareaTo($('.eventDesc').val()) + "&effBus=" + $(".effBus").val() + "&incidence=" + $(".incidence").val() + "&effTime=" + $(".effTime").val() + "&eventHandle=" + textareaTo($('.eventHandle').val()) + "&eventReason=" + textareaTo($('.eventReason').val()) + "&eventResult=" + textareaTo($('.eventResult').val()) + "&tjsj=" + tjsj + "&eventNumber=" + sjdbh;
 	$.ajax({
 		type: "POST",
 		url: "/myproject/EventAddServlet",
@@ -34,7 +60,7 @@ function bgsqSave() {
 			break;
 		}
 	}
-	var param = "bglx=" + bglx + "&bgxm=" + $(".bgxm").val() + "&bgdj=" + bgdj + "&jhssr=" + $(".jhssr").val() + "&jhkssj=" + $(".jhkssj").val() + "&jhjssj=" + $(".jhjssj").val() + "&bgsqr=" + $(".bgsqr").val() + "&sqsj=" + $(".sqsj").val() + "&bgyy=" + $(".bgyy").val() + "&bgfa=" + $(".bgfa").val() + "&bghtfa=" + $(".bghtfa").val() + "&tjsj=" + tjsj + "&changeNumber=" + bgdbh;
+	var param = "bglx=" + bglx + "&bgxm=" + $(".bgxm").val() + "&bgdj=" + bgdj + "&jhssr=" + $(".jhssr").val() + "&jhkssj=" + $(".jhkssj").val() + "&jhjssj=" + $(".jhjssj").val() + "&bgsqr=" + $(".bgsqr").val() + "&sqsj=" + $(".sqsj").val() + "&bgyy=" + textareaTo($('.bgyy').val()) + "&bgfa=" + textareaTo($('.bgfa').val()) + "&bghtfa=" + textareaTo($('.bghtfa').val()) + "&tjsj=" + tjsj + "&changeNumber=" + bgdbh;
 	$.ajax({
 		type: "POST",
 		url: "/myproject/addChange",

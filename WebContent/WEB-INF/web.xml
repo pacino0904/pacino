@@ -97,7 +97,7 @@
     <servlet-name>ChangeDetailServlet</servlet-name>
     <url-pattern>/detailChange</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <servlet-name>ChangeDeleteServlet</servlet-name>
     <servlet-class>com.change.servlet.ChangeDeleteServlet</servlet-class>
   </servlet>
@@ -156,4 +156,14 @@
     <filter-name>shiroFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+  
+  <filter>
+    <filter-name>FirstFilter</filter-name>
+    <filter-class>com.filter.FirstFilter</filter-class>
+</filter>
+ 
+<filter-mapping>
+    <filter-name>FirstFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+</filter-mapping>
 </web-app>

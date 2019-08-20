@@ -20,7 +20,7 @@
 <body>
 	<div class="x-nav">
 		<span class="layui-breadcrumb">
-			<a href="">首页</a>
+			<a href="welcome.html">首页</a>
 			<a href="">变更管理</a>
 			<a><cite>变更历史</cite></a>
 		</span>
@@ -123,8 +123,8 @@
 						layer.close(index);
 					});
 				} else if (obj.event === 'detail') {
-					$('#detailUrl', parent.document).attr("_href", "change-detail.html?" + data.id);
-					$('#detail', parent.document).click();
+					$('#changeDetailUrl', parent.document).attr("_href", "change-detail.html?" + data.id);
+					$('#changeDetail', parent.document).click();
 				}
 			});
 		});
