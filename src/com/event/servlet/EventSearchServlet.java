@@ -46,7 +46,7 @@ public class EventSearchServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
-
+		
 		String startTime = request.getParameter("startTime");
 		String endTime = request.getParameter("endTime");
 		String keyWord = request.getParameter("keyWord");

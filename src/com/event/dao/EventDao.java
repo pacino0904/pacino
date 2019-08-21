@@ -26,7 +26,7 @@ public class EventDao {
 	}
 	//事件单添加功能
 	public void add(Event event) {
-		String sql = "insert into `oa-event` values(null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+		String sql = "insert into `oa-event` values(null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 		try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(sql);){
 			ps.setString(1, event.occTime);
 			ps.setString(2, event.locale);
@@ -44,6 +44,7 @@ public class EventDao {
 			ps.setString(14, event.eventResult);
 			ps.setString(15, event.tjsj);
 			ps.setString(16, event.eventNumber);
+			ps.setString(17, event.status);
 			
 			ps.execute();
 		}catch(SQLException e) {
@@ -58,11 +59,9 @@ public class EventDao {
 	
 	public List<Event> list(int start, int count){
 		List<Event> events = new ArrayList<Event>();
-		String sql = "select * from `oa-event` order by id desc limit ?,?";
+		String sql = "select * from `oa-event` where status='true'";
 		try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(sql);){
-			ps.setInt(1, start);
-			ps.setInt(2, count);
-			
+
 			ResultSet rs = ps.executeQuery();
 			
 			while(rs.next()) {
@@ -100,7 +99,7 @@ public class EventDao {
 	
 	//查看全部事件单的数量
 	public int total() {
-		String sql = "SELECT COUNT(*) FROM `oa-event`";
+		String sql = "SELECT COUNT(*) FROM `oa-event` where status='true'";
 		int totalCount = 0;
 		try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(sql);){
 			ResultSet rs = ps.executeQuery();
@@ -158,7 +157,7 @@ public class EventDao {
 
 	//事件单删除功能
 	public void delete(Event event) {
-		String sql = "delete from `oa-event` where id=?;";
+		String sql = "update `oa-event` set status='delete' where id=?;";
 		try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(sql);){
 			ps.setInt(1, event.id);
 			ps.execute();
@@ -177,10 +176,10 @@ public class EventDao {
 			endTime = "2050-01-01";
 		}
 		if(keyWord.equals("null")) {
-			String sql = "select * from `oa-event` where `occ-time` between ? and ?";
+			String sql = "select * from `oa-event` where `occ-time` between ? and ? AND status='true'";
 			try(Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(sql);){
-				ps.setString(1, startTime);
-				ps.setString(2, endTime);
+				ps.setString(1, startTime + " 00:00:00");
+				ps.setString(2, endTime + " 23:59:59");
 				ResultSet rs = ps.executeQuery();
 				while(rs.next()) {
 					Event event = new Event();
@@ -212,12 +211,12 @@ public class EventDao {
 				e.printStackTrace();
 			}
 		}else {
-			String sql = "SELECT * FROM `oa-event` WHERE CONCAT(`locale`,`department`,`level`,`disc-person`,`handle-person`,`event-desc`,`event-reason`) LIKE ? AND `occ-time` between ? and ?";
+			String sql = "SELECT * FROM `oa-event` WHERE CONCAT(`locale`,`department`,`level`,`disc-person`,`handle-person`,`event-desc`,`event-reason`) LIKE ? AND `occ-time` between ? and ? AND status='true'";
 			try(Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(sql);){
 				keyWord = "%"+keyWord+"%";
 				ps.setString(1, keyWord);
-				ps.setString(2, startTime);
-				ps.setString(3, endTime);
+				ps.setString(2, startTime + " 00:00:00");
+				ps.setString(3, endTime + " 23:59:59");
 				ResultSet rs = ps.executeQuery();
 				while(rs.next()) {
 					Event event = new Event();
@@ -262,10 +261,10 @@ public class EventDao {
 			endTime = "2050-01-01";
 		}
 		if(keyWord.equals("null")) {
-			String sql = "SELECT COUNT(*) FROM (select * from `oa-event` where `occ-time` between ? and ?) as total";
+			String sql = "SELECT COUNT(*) FROM (select * from `oa-event` where `occ-time` between ? and ? AND status='true') as total";
 			try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(sql);){
-				ps.setString(1, startTime);
-				ps.setString(2, endTime);
+				ps.setString(1, startTime + " 00:00:00");
+				ps.setString(2, endTime + " 23:59:59");
 				ResultSet rs = ps.executeQuery();
 				while(rs.next()) {
 					totalCount = rs.getInt(1);
@@ -274,12 +273,12 @@ public class EventDao {
 				e.printStackTrace();
 			}
 		}else {
-			String sql = "SELECT COUNT(*) FROM (SELECT * FROM `oa-event` WHERE CONCAT(`locale`,`department`,`level`,`disc-person`,`handle-person`,`event-desc`,`event-reason`) LIKE ? AND `occ-time` between ? and ?) as total";
+			String sql = "SELECT COUNT(*) FROM (SELECT * FROM `oa-event` WHERE CONCAT(`locale`,`department`,`level`,`disc-person`,`handle-person`,`event-desc`,`event-reason`) LIKE ? AND `occ-time` between ? and ? AND status='true') as total";
 			try(Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(sql);){
 				keyWord = "%"+keyWord+"%";
 				ps.setString(1, keyWord);
-				ps.setString(2, startTime);
-				ps.setString(3, endTime);
+				ps.setString(2, startTime + " 00:00:00");
+				ps.setString(3, endTime + " 23:59:59");
 				ResultSet rs = ps.executeQuery();
 				while(rs.next()) {
 					totalCount = rs.getInt(1);

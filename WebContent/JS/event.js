@@ -23,12 +23,12 @@
      
      return str;
  }
-
+ 
 //事件单保存
 function save() {
 	var nowTime = new Date();
 	var tjsj = nowTime.getFullYear() + "-" + (nowTime.getMonth() + 1) + "-" + nowTime.getDate() + " " + nowTime.getHours() + ":" + nowTime.getMinutes() + ":" + nowTime.getSeconds();
-	var param = "occTime=" + $(".occTime").val() + "&locale=" + $(".didian").val() + $(".mozu").val() + "&department=" + $(".department").val() + "&level=" + $(".level").val() + "&discPerson=" + $(".discPerson").val() + "&discTime=" + $(".discTime").val() + "&handlePerson=" + $(".handlePerson").val() + "&eventDesc=" + textareaTo($('.eventDesc').val()) + "&effBus=" + $(".effBus").val() + "&incidence=" + $(".incidence").val() + "&effTime=" + $(".effTime").val() + "&eventHandle=" + textareaTo($('.eventHandle').val()) + "&eventReason=" + textareaTo($('.eventReason').val()) + "&eventResult=" + textareaTo($('.eventResult').val()) + "&tjsj=" + tjsj + "&eventNumber=" + sjdbh;
+	var param = "occTime=" + $(".occTime").val() + "&locale=" + $(".didian").val() + $(".mozu").val() + "&department=" + $(".department").val() + "&level=" + $(".level").val() + "&discPerson=" + $(".discPerson").val() + "&discTime=" + $(".discTime").val() + "&handlePerson=" + $(".handlePerson").val() + "&eventDesc=" + textareaTo($('.eventDesc').val()) + "&effBus=" + $(".effBus").val() + "&incidence=" + $(".incidence").val() + "&effTime=" + $(".effTime").val() + "&eventHandle=" + textareaTo($('.eventHandle').val()) + "&eventReason=" + textareaTo($('.eventReason').val()) + "&eventResult=" + textareaTo($('.eventResult').val()) + "&tjsj=" + tjsj + "&eventNumber=" + sjdbh + "&status=" + "true";
 	$.ajax({
 		type: "POST",
 		url: "/myproject/EventAddServlet",
@@ -60,7 +60,8 @@ function bgsqSave() {
 			break;
 		}
 	}
-	var param = "bglx=" + bglx + "&bgxm=" + $(".bgxm").val() + "&bgdj=" + bgdj + "&jhssr=" + $(".jhssr").val() + "&jhkssj=" + $(".jhkssj").val() + "&jhjssj=" + $(".jhjssj").val() + "&bgsqr=" + $(".bgsqr").val() + "&sqsj=" + $(".sqsj").val() + "&bgyy=" + textareaTo($('.bgyy').val()) + "&bgfa=" + textareaTo($('.bgfa').val()) + "&bghtfa=" + textareaTo($('.bghtfa').val()) + "&tjsj=" + tjsj + "&changeNumber=" + bgdbh;
+	
+	var param = "bglx=" + bglx + "&bgxm=" + $(".bgxm").val() + "&bgdj=" + bgdj + "&jhssr=" + $(".jhssr").val() + "&jhkssj=" + $(".jhkssj").val() + "&jhjssj=" + $(".jhjssj").val() + "&bgsqr=" + $(".bgsqr").val() + "&sqsj=" + $(".sqsj").val() + "&bgyy=" + textareaTo($('.bgyy').val()) + "&bgfa=" + textareaTo($('.bgfa').val()) + "&bghtfa=" + textareaTo($('.bghtfa').val()) + "&tjsj=" + tjsj + "&changeNumber=" + bgdbh + "&status=" + "true";
 	$.ajax({
 		type: "POST",
 		url: "/myproject/addChange",
@@ -149,39 +150,6 @@ function changeDelete(dataid) {
 		dataType: "json",
 		success: function (data) {
 			alert("成功!");
-		}
-	})
-}
-
-//事件单搜索功能
-function eventSearch() {
-	var startTime;
-	if ($("#start-time").val()) {
-		startTime = $("#start-time").val();
-	} else {
-		startTime = null;
-	}
-	var endTime;
-	if ($("#end-time").val()) {
-		endTime = $("#end-time").val();
-	} else {
-		endTime = null;
-	}
-	var keyWord;
-	if ($("#key-word").val()) {
-		keyWord = $("#key-word").val();
-	} else {
-		keyWord = null;
-	}
-
-	var param = "startTime=" + startTime + "&endTime=" + endTime + "&keyWord=" + keyWord;
-	$.ajax({
-		type: "POST",
-		url: "/myproject/searchEvent",
-		data: param,
-		dataType: "json",
-		success: function (data) {
-			console.log(data);
 		}
 	})
 }

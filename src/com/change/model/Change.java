@@ -15,6 +15,13 @@ public class Change {
 	public String bghtfa;
 	public String tjsj;
 	public String changeNumber;
+	public String status;
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public String getTjsj() {
 		return tjsj;
 	}

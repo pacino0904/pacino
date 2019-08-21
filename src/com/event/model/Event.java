@@ -20,7 +20,14 @@ public class Event {
 	public String eventCount;
 	public String tjsj;
 	public String eventNumber;
+	public String status;
 
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public String getEventNumber() {
 		return eventNumber;
 	}

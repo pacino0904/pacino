@@ -25,7 +25,7 @@ public class ChangeDao {
 	
 	//变更工作单添加功能
 	public void add(Change change){
-		String sql = "insert into `oa-change` values(null,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+		String sql = "insert into `oa-change` values(null,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 		try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(sql);){
 			ps.setString(1, change.bglx);
 			ps.setString(2, change.bgxm);
@@ -40,6 +40,7 @@ public class ChangeDao {
 			ps.setString(11, change.bghtfa);
 			ps.setString(12, change.tjsj);
 			ps.setString(13, change.changeNumber);
+			ps.setString(14, change.status);
 			
 			ps.execute();
 		}catch(SQLException e) {
@@ -54,11 +55,8 @@ public class ChangeDao {
 		
 		public List<Change> list(int start, int count){
 			List<Change> changes = new ArrayList<Change>();
-			String sql = "select * from `oa-change` order by id desc limit ?,?";
-			try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(sql);){
-				ps.setInt(1, start);
-				ps.setInt(2, count);
-				
+			String sql = "select * from `oa-change` where status='true'";
+			try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(sql);){		
 				ResultSet rs = ps.executeQuery();
 				
 				while(rs.next()) {
@@ -100,7 +98,7 @@ public class ChangeDao {
 	
 	//查看全部变更工作单的数量
 	public int total() {
-		String sql = "SELECT COUNT(*) FROM `oa-change`";
+		String sql = "SELECT COUNT(*) FROM `oa-change` where status='true'";
 		int totalCount = 0;
 		try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(sql);){
 			ResultSet rs = ps.executeQuery();
@@ -139,10 +137,10 @@ public class ChangeDao {
 				endTime = "2050-01-01";
 			}
 			if(keyWord.equals("null")) {
-				String sql = "select * from `oa-change` where `sqsj` between ? and ?";
+				String sql = "select * from `oa-change` where `sqsj` between ? and ? AND status='true'";
 				try(Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(sql);){
-					ps.setString(1, startTime);
-					ps.setString(2, endTime);
+					ps.setString(1, startTime + " 00:00:00");
+					ps.setString(2, endTime + " 23:59:59");
 					ResultSet rs = ps.executeQuery();
 					while(rs.next()) {
 						Change change = new Change();
@@ -178,12 +176,12 @@ public class ChangeDao {
 					e.printStackTrace();
 				}
 			}else {
-				String sql = "SELECT * FROM `oa-change` WHERE CONCAT(`bglx`,`bgxm`,`bgdj`,`jhssr`,`bgsqr`,`bgyy`,`bgfa`,`bghtfa`) LIKE ? AND `sqsj` between ? and ?";
+				String sql = "SELECT * FROM `oa-change` WHERE CONCAT(`bglx`,`bgxm`,`bgdj`,`jhssr`,`bgsqr`,`bgyy`,`bgfa`,`bghtfa`) LIKE ? AND `sqsj` between ? and ? AND status='true'";
 				try(Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(sql);){
 					keyWord = "%"+keyWord+"%";
 					ps.setString(1, keyWord);
-					ps.setString(2, startTime);
-					ps.setString(3, endTime);
+					ps.setString(2, startTime + " 00:00:00");
+					ps.setString(3, endTime + " 23:59:59");
 					ResultSet rs = ps.executeQuery();
 					while(rs.next()) {
 						Change change = new Change();
@@ -232,10 +230,10 @@ public class ChangeDao {
 				endTime = "2050-01-01";
 			}
 			if(keyWord.equals("null")) {
-				String sql = "SELECT COUNT(*) FROM (select * from `oa-change` where `sqsj` between ? and ?) as total";
+				String sql = "SELECT COUNT(*) FROM (select * from `oa-change` where `sqsj` between ? and ? AND status='true') as total";
 				try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(sql);){
-					ps.setString(1, startTime);
-					ps.setString(2, endTime);
+					ps.setString(1, startTime + " 00:00:00");
+					ps.setString(2, endTime + " 23:59:59");
 					ResultSet rs = ps.executeQuery();
 					while(rs.next()) {
 						totalCount = rs.getInt(1);
@@ -244,12 +242,12 @@ public class ChangeDao {
 					e.printStackTrace();
 				}
 			}else {
-				String sql = "SELECT COUNT(*) FROM (SELECT * FROM `oa-change` WHERE CONCAT(`bglx`,`bgxm`,`bgdj`,`jhssr`,`bgsqr`,`bgyy`,`bgfa`,`bghtfa`) LIKE ? AND `sqsj` between ? and ?) as total";
+				String sql = "SELECT COUNT(*) FROM (SELECT * FROM `oa-change` WHERE CONCAT(`bglx`,`bgxm`,`bgdj`,`jhssr`,`bgsqr`,`bgyy`,`bgfa`,`bghtfa`) LIKE ? AND `sqsj` between ? and ? AND status='true') as total";
 				try(Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(sql);){
 					keyWord = "%"+keyWord+"%";
 					ps.setString(1, keyWord);
-					ps.setString(2, startTime);
-					ps.setString(3, endTime);
+					ps.setString(2, startTime + " 00:00:00");
+					ps.setString(3, endTime + " 23:59:59");
 					ResultSet rs = ps.executeQuery();
 					while(rs.next()) {
 						totalCount = rs.getInt(1);
@@ -298,7 +296,7 @@ public class ChangeDao {
 		}
 		//事件单删除功能
 		public void delete(Change change) {
-			String sql = "delete from `oa-change` where id=?;";
+			String sql = "update `oa-change` set status='delete' where id=?;";
 			try (Connection c = getConnection(); PreparedStatement ps = c.prepareStatement(sql);){
 				ps.setInt(1, change.id);
 				ps.execute();
