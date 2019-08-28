@@ -131,7 +131,7 @@
           </td>
           <td style="background-color: #F0F8FF">严重程度</td>
           <td>
-            <select class="level" style="height: 30px; width: 100px; border: none; padding: 0;" onBlur="choose()">
+            <select class="level" style="height: 30px; width: 100px; border: none; padding: 0;">
            	  <option value="" disabled selected>请选择程度</option>
               <option value="高">高</option>
               <option value="中">中</option>
@@ -219,12 +219,6 @@
     </div>
   </div>
   <script>
-  function choose(){
-	  if(this.value != ""){
-		  console.log(123);
-		  $(".level").parent().css('background-color', 'blue');
-	  }
-  }
     layui.use('laydate', function () {
       var laydate = layui.laydate;
       laydate.render({
@@ -240,6 +234,14 @@
     layui.use('layer', function () {
       var layer = layui.layer;
       $("#confirm").click(function () {
+    	 if($(".occTime").val() == ""){
+   		  alert("请填写发生时间！");
+   		  return;
+		};
+		if($(".discTime").val() == ""){
+  		  alert("请填写事件发现时间！");
+  		  return;
+		};
         layer.open({
           title: '事件单'
           , content: '是否提交基础设施事件工作单？'

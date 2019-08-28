@@ -325,6 +325,18 @@
         layui.use('layer', function () {
             var layer = layui.layer;
             $("#confirm").click(function () {
+           	if($(".jhkssj").val() == ""){
+        		  alert("请填写计划开始时间！");
+        		  return;
+      		};
+      		if($(".jhjssj").val() == ""){
+      		  alert("请填写计划结束时间！");
+      		  return;
+	  		};
+	  		if($(".sqsj").val() == ""){
+	  		  alert("请填写申请时间！");
+	  		  return;
+			};
                 layer.open({
                     title: '事件单'
                     , content: '是否提交基础设施变更工作单？'
