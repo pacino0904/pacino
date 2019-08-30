@@ -127,8 +127,8 @@ function changeDetail(dataid) {
 }
 
 //事件单删除
-function eventDelete(dataid) {
-	var param = "id=" + dataid;
+function eventDelete(dataid, dataEventNumber) {
+	var param = "id=" + dataid + "&eventNumber=" + dataEventNumber;
 	$.ajax({
 		type: "POST",
 		url: "/myproject/deleteEvent",

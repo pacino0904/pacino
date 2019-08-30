@@ -1,6 +1,8 @@
 package com.event.servlet;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -9,8 +11,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.shiro.SecurityUtils;
+
 import com.event.dao.EventDao;
 import com.event.model.Event;
+import com.log.dao.LogDao;
+import com.log.model.Log;
 
 /**
  * Servlet implementation class EventSerchServlet
@@ -66,6 +72,20 @@ public class EventSearchServlet extends HttpServlet {
 		sb.deleteCharAt(sb.length() - 1);
 		sb.append("]}");
 		response.getWriter().write(sb.toString());
+		
+		String name = (String) SecurityUtils.getSubject().getPrincipal();
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		
+		Log log = new Log();
+		log.setUser(name);
+		log.setTime(df.format(new Date()));
+		log.setIp(request.getRemoteAddr());
+		log.setType("search");
+		log.setContent1("event");
+		log.setContent4(startTime);
+		log.setContent5(endTime);
+		log.setContent6(keyWord);
+		new LogDao().add(log);
 	}
 
 }

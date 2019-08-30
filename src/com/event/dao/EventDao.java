@@ -77,6 +77,7 @@ public class EventDao {
 				String effBus = rs.getString(10);
 				String incidence = rs.getString(11);
 				String effTime = rs.getString(12);
+				String eventNumber = rs.getString(17);
 				event.id = id;
 				event.occTime = occTime.substring(0, occTime.length()-2);
 				event.locale = locale;
@@ -88,6 +89,7 @@ public class EventDao {
 				event.effBus = effBus;
 				event.incidence = incidence;
 				event.effTime = effTime;
+				event.eventNumber = eventNumber;
 				events.add(event);
 			}
 			

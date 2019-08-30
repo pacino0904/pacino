@@ -7,8 +7,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.shiro.SecurityUtils;
+
 import com.event.model.Event;
 import com.event.dao.EventDao;
+import com.log.model.Log;
+import com.log.dao.LogDao;
 
 public class EventAddServlet extends HttpServlet {
 	
@@ -35,6 +39,19 @@ public class EventAddServlet extends HttpServlet {
 		event.setEventNumber(request.getParameter("eventNumber"));
 		event.setStatus(request.getParameter("status"));
 		new EventDao().add(event);
+		
+		String name = (String) SecurityUtils.getSubject().getPrincipal();
+		
+		
+		Log log = new Log();
+		log.setUser(name);
+		log.setTime(request.getParameter("tjsj"));
+		log.setIp(request.getRemoteAddr());
+		log.setType("add");
+		log.setContent1("event");
+		log.setContent2(request.getParameter("eventNumber"));
+		new LogDao().add(log);
+		
 	}
 	
 	
