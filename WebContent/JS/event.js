@@ -16,10 +16,8 @@
  */
  function toTextarea(str){
      var reg=new RegExp("<br>","g");
-     var regSpace=new RegExp("&nbsp;","g");
      
      str = str.replace(reg,"\n");
-     str = str.replace(regSpace," ");
      
      return str;
  }
