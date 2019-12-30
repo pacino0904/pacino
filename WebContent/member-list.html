@@ -27,6 +27,12 @@
       href="javascript:location.replace(location.href);" title="刷新">
       <i class="layui-icon" style="line-height:30px">ဂ</i></a>
     <div style="float:right">共有人员:&nbsp;<span id="total"></span>&nbsp;名&nbsp;&nbsp;</div>
+    <div class="layui-inline" style="padding:0 0 0 30px">
+		<input type="text" class="layui-input" id="key-word" style="width:140px;margin-right:10px;float:left;height:30px;margin-top:5px;"
+			lay-verify="title" autocomplete="off" placeholder="搜索关键词">
+		<button class="layui-btn" id="search" data-type="reload" lay-filter="sreach" style="height:30px"><i
+				class="layui-icon">&#xe615;</i></button>
+	</div>
   </div>
 
   <table id="memberlist" lay-filter="test"></table>
@@ -38,21 +44,34 @@
         elem: '#memberlist'
         , url: '/myproject/listMember' //数据接口
         , page: false //开启分页
-        , height: 538
+        , height: 'full-60'
         , cols: [[ //表头
           { field: 'id', title: 'ID', sort: true, align: 'center', fixed: 'left' }
-          , { field: 'group', title: '组别', align: 'center' }
-          , { field: 'jobPosition', title: '岗位', align: 'center' }
-          , { field: 'name', title: '姓名', align: 'center', sort: true }
-          , { field: 'phoneNumber', title: '手机', width: 140, align: 'center' }
-          , { field: 'position', title: '园区', align: 'center', sort: true }
-          , { field: 'secondFunction', title: '所属二级职能线划分', width: 350, align: 'center' }
+          , { field: 'department', title: '部门', align: 'center', sort: true }
+          , { field: 'subDepartment', title: '分部', align: 'center', sort: true }
+          , { field: 'job', title: '职务/岗位', align: 'center', sort: true }
+          , { field: 'name', title: '姓名', width: 140, align: 'center' }
+          , { field: 'phoneNumber', title: '手机', align: 'center' }
+          , { field: 'function', title: '所属二级职能线划分', width: 350, align: 'center' }
         ]]
         , done: function (res, curr, count) {
           $("#total").text(count);
         }
       });
-
+    //搜索功能，表格重载
+  	$("#search").click(function () {
+  		var keyWord;
+  		if ($("#key-word").val()) {
+  			keyWord = $("#key-word").val();
+  		} else {
+  			keyWord = null;
+  		}
+  		var param = "keyWord=" + keyWord;
+  		var url = '/myproject/searchMember?' + param;
+  		table.reload('memberlist', {
+  			url: url
+  		});
+  	})
     });
   </script>
 </body>

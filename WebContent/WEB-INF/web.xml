@@ -58,6 +58,14 @@
     <url-pattern>/listMember</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>MemberSearchServlet</servlet-name>
+    <servlet-class>com.member.servlet.MemberSearchServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MemberSearchServlet</servlet-name>
+    <url-pattern>/searchMember</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>ChangeAddServlet</servlet-name>
     <servlet-class>com.change.servlet.ChangeAddServlet</servlet-class>
   </servlet>
@@ -156,14 +164,12 @@
     <filter-name>shiroFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
-  
   <filter>
     <filter-name>FirstFilter</filter-name>
     <filter-class>com.filter.FirstFilter</filter-class>
-</filter>
- 
-<filter-mapping>
+  </filter>
+  <filter-mapping>
     <filter-name>FirstFilter</filter-name>
     <url-pattern>/*</url-pattern>
-</filter-mapping>
+  </filter-mapping>
 </web-app>

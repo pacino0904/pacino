@@ -176,10 +176,16 @@
                 <li>
                     <a href="javascript:;">
                         <!-- <i class="layui-icon">&#xe705;</i> -->
-                        <cite>值班日志</cite>
+                        <cite>值排班</cite>
                         <i class="iconfont nav_right">&#xe697;</i>
                     </a>
                     <ul class="sub-menu">
+                        <li>
+                            <a _href="admin-list.html">
+                                <i class="iconfont">&#xe6a7;</i>
+                                <cite>值班表</cite>
+                            </a>
+                        </li>
                         <li>
                             <a _href="admin-list.html">
                                 <i class="iconfont">&#xe6a7;</i>
@@ -198,7 +204,7 @@
                         <li>
                             <a _href="member-list.html">
                                 <i class="iconfont">&#xe6a7;</i>
-                                <cite>人员列表</cite>
+                                <cite>通讯录</cite>
                             </a>
                         </li>
                         <li>
@@ -213,14 +219,38 @@
                 <li>
                     <a href="javascript:;">
                         <!-- <i class="layui-icon">&#xe705;</i> -->
-                        <cite>资源发布</cite>
+                        <cite>资料库</cite>
                         <i class="iconfont nav_right">&#xe697;</i>
                     </a>
                     <ul class="sub-menu">
                         <li>
                             <a _href="document.html">
                                 <i class="iconfont">&#xe6a7;</i>
-                                <cite>资源下载</cite>
+                                <cite>文件发布</cite>
+                            </a>
+                        </li>
+                        <li>
+                            <a _href="document.html">
+                                <i class="iconfont">&#xe6a7;</i>
+                                <cite>知识分享</cite>
+                            </a>
+                        </li>
+                        <li>
+                            <a _href="./资料库/pxzl.html">
+                                <i class="iconfont">&#xe6a7;</i>
+                                <cite>培训资料</cite>
+                            </a>
+                        </li>
+                        <li>
+                            <a _href="member-list.html">
+                                <i class="iconfont">&#xe6a7;</i>
+                                <cite>规章制度</cite>
+                            </a>
+                        </li>
+                        <li>
+                            <a _href="./资料库/cybd.html">
+                                <i class="iconfont">&#xe6a7;</i>
+                                <cite>常用表单</cite>
                             </a>
                         </li>
                     </ul>
@@ -250,21 +280,19 @@
 
     <!-- 底部结束 -->
     
-    
     <script>
-    function getUsername() {
-    	var param = "";
-        $.ajax({
-          type: "POST",
-          url: "/myproject/getUsername",
-          data: param,
-  		dataType: "text",
-  		success: function (data) {
-  			$("#username").html(data);
-  		}
-        })
-      }
-    getUsername();
+    	function getUsername(){
+    		var param = "";
+    		$.ajax({
+    			type:"POST",
+    			url:"/myproject/getUsername",
+    			data:param,
+    			dataType:"text",
+    			success:function(data){
+    				$("#username").html(data);
+    			}
+    		})
+    	}
     </script>
 </body>
 </html>

@@ -13,16 +13,16 @@ import com.member.dao.MemberDao;
 import com.member.model.Member;
 
 /**
- * Servlet implementation class MemberListServlet
+ * Servlet implementation class MemberSearchServlet
  */
-@WebServlet("/MemberListServlet")
-public class MemberListServlet extends HttpServlet {
+@WebServlet("/MemberSearchServlet")
+public class MemberSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberListServlet() {
+    public MemberSearchServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,12 +42,15 @@ public class MemberListServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-		List<Member> members = new MemberDao().list();
-		int count = new MemberDao().total();
+		String keyWord = request.getParameter("keyWord");
+		
+		List<Member> members = new MemberDao().search(keyWord);
+		int count = new MemberDao().searchTotal(keyWord);
 		StringBuffer sb = new StringBuffer();
 		String trFormat1 = "{\"code\":0,\"msg\":\"\",\"count\":%d,\"data\":[";
 		String tr1 = String.format(trFormat1, count);
@@ -63,4 +66,5 @@ public class MemberListServlet extends HttpServlet {
 		sb.append("]}");
 		response.getWriter().write(sb.toString());
 	}
+
 }
