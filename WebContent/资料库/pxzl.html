@@ -10,9 +10,7 @@
     <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <style>
-        .layui-table td a {
-            color: black;
-        }
+
     </style>
     <link rel="stylesheet" href="../css/font.css">
     <link rel="stylesheet" href="../css/xadmin.css">
@@ -25,66 +23,288 @@
 
 <body>
     <div class="x-body" style="padding:0;">
-        <table class="layui-table" style="margin:0;">
-            <colgroup>
-                <col>
-                <col>
-                <col>
-                <col>
-                <col>
-            </colgroup>
-            <thead>
-                <tr>
-                    <th>专业</th>
-                    <th>名称</th>
-                    <th>发布时间</th>
-                    <th>发布人</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>全部</td>
-                    <td>变更申请单模板</td>
-                    <td>20180327</td>
-                    <td></td>
-                    <td>
-                        <a href="./常用表单/变更申请单模板【20180327】.pdf" target="_blank">预览</a>
-                        <a href="./常用表单/变更申请单模板【20180327】.docx">下载</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>安消防</td>
-                    <td>缺陷跟踪单模板</td>
-                    <td>20170214</td>
-                    <td></td>
-                    <td>
-                        <a href="./常用表单/缺陷跟踪单模板【20170214】.pdf" target="_blank">预览</a>
-                        <a href="./常用表单/缺陷跟踪单模板【20170214】.docx">下载</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>全部</td>
-                    <td>事件工作单模板</td>
-                    <td>20170214</td>
-                    <td></td>
-                    <td>
-                        <a href="./常用表单/事件工作单模板【20170214】.pdf" target="_blank">预览</a>
-                        <a href="./常用表单/事件工作单模板【20170214】.docx">下载</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>全部</td>
-                    <td>维修记录单模板</td>
-                    <td>20170214</td>
-                    <td></td>
-                    <td>
-                        <a href="./常用表单/维修记录单模板【20170214】.pdf" target="_blank">预览</a>
-                        <a href="./常用表单/维修记录单模板【20170214】.docx">下载</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+            <ul class="layui-tab-title">
+                <li class="layui-this">管理制度培训</li>
+                <li>供配电培训</li>
+                <li>制冷培训</li>
+                <li>安消防培训</li>
+            </ul>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+                    <table class="layui-table" style="margin:0;">
+                        <colgroup>
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th>名称</th>
+                                <th>类型</th>
+                                <th>发布时间</th>
+                                <th>发布人</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>润泽科技数据中心-运维管理体系培训</td>
+                                <td></td>
+                                <td>20190315</td>
+                                <td></td>
+                                <td>
+                                    <a class="layui-btn layui-btn-radius layui-btn-xs" href="./培训资料/管理制度培训/1、润泽科技数据中心-运维管理体系培训-20190315.pptx">下载</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>数据中心人员组织及岗位职责培训</td>
+                                <td></td>
+                                <td>20180620</td>
+                                <td></td>
+                                <td>
+                                    <a class="layui-btn layui-btn-radius layui-btn-xs" href="./培训资料/管理制度培训/2、数据中心人员组织及岗位职责培训-20180620.pptx">下载</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>数据中心基础设施运维管理流程培训</td>
+                                <td></td>
+                                <td>20190823</td>
+                                <td></td>
+                                <td>
+                                    <a class="layui-btn layui-btn-radius layui-btn-xs" href="./培训资料/管理制度培训/3、数据中心基础设施运维管理流程培训-20190823.pptx">下载</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>数据中心基础设施维护管理培训</td>
+                                <td></td>
+                                <td>20190323</td>
+                                <td></td>
+                                <td>
+                                    <a class="layui-btn layui-btn-radius layui-btn-xs" href="./培训资料/管理制度培训/4、数据中心基础设施维护管理培训-20190323.pptx">下载</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>数据中心人员值班管理培训</td>
+                                <td></td>
+                                <td>20190310</td>
+                                <td></td>
+                                <td>
+                                    <a class="layui-btn layui-btn-radius layui-btn-xs" href="./培训资料/管理制度培训/5、数据中心人员值班管理培训-20190310.pptx">下载</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>例行巡检管理培训强电A5</td>
+                                <td></td>
+                                <td>20190823</td>
+                                <td></td>
+                                <td>
+                                    <a class="layui-btn layui-btn-radius layui-btn-xs" href="./培训资料/管理制度培训/6、例行巡检管理培训强电A5-20190823.pptx">下载</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>数据中心人员培训管理培训</td>
+                                <td></td>
+                                <td>20190107</td>
+                                <td></td>
+                                <td>
+                                    <a class="layui-btn layui-btn-radius layui-btn-xs" href="./培训资料/管理制度培训/7、数据中心人员培训管理培训-20190107.pptx">下载</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>负荷及容量管理培训</td>
+                                <td></td>
+                                <td>20190823</td>
+                                <td></td>
+                                <td>
+                                    <a class="layui-btn layui-btn-radius layui-btn-xs" href="./培训资料/管理制度培训/8、负荷及容量管理培训-20190823.pptx">下载</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>文档管理培训</td>
+                                <td></td>
+                                <td>20190328</td>
+                                <td></td>
+                                <td>
+                                    <a class="layui-btn layui-btn-radius layui-btn-xs" href="./培训资料/管理制度培训/9、文档管理培训-20190328.pptx">下载</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="layui-tab-item">
+                    <table class="layui-table" style="margin:0;">
+                        <colgroup>
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th>名称</th>
+                                <th>类型</th>
+                                <th>发布时间</th>
+                                <th>发布人</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>CAT柴油发电机操作</td>
+                                <td>操作培训</td>
+                                <td>20190412</td>
+                                <td></td>
+                                <td>
+                                    <a class="layui-btn layui-btn-radius layui-btn-xs" href="./培训资料/供配电培训/操作培训/A5-CAT柴油发电机操作【20190412】.pptx">下载</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>开关类设备操作培训</td>
+                                <td>操作培训</td>
+                                <td>20190312</td>
+                                <td></td>
+                                <td>
+                                    <a class="layui-btn layui-btn-radius layui-btn-xs" href="./培训资料/供配电培训/操作培训/A5-开关类设备操作培训-南晓峰【20190312】.pptx">下载</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>列头柜操作培训</td>
+                                <td>操作培训</td>
+                                <td>20190306</td>
+                                <td></td>
+                                <td>
+                                    <a class="layui-btn layui-btn-radius layui-btn-xs" href="./培训资料/供配电培训/操作培训/A5-列头柜操作培训-南晓峰【20190306】.pptx">下载</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>伊顿9395UPS操作培训</td>
+                                <td>操作培训</td>
+                                <td>20190412</td>
+                                <td></td>
+                                <td>
+                                    <a class="layui-btn layui-btn-radius layui-btn-xs" href="./培训资料/供配电培训/操作培训/A5-伊顿9395UPS操作培训【20190412】.ppt">下载</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>仪表类操作培训</td>
+                                <td>操作培训</td>
+                                <td>20190315</td>
+                                <td></td>
+                                <td>
+                                    <a class="layui-btn layui-btn-radius layui-btn-xs" href="./培训资料/供配电培训/操作培训/A5-仪表类操作培训-南晓峰【20190315】.pptx">下载</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>直流屏操作培训课件</td>
+                                <td>操作培训</td>
+                                <td>20190322</td>
+                                <td></td>
+                                <td>
+                                    <a class="layui-btn layui-btn-radius layui-btn-xs" href="./培训资料/供配电培训/操作培训/A5-直流屏操作培训课件【20190322】.pptx">下载</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>CAT柴油发电机维护</td>
+                                <td>维护培训</td>
+                                <td>20190412</td>
+                                <td></td>
+                                <td>
+                                    <a class="layui-btn layui-btn-radius layui-btn-xs" href="./培训资料/供配电培训/维护培训/A5-CAT柴油发电机维护【20190412】.pptx">下载</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>防雷系统维护操作流程培训</td>
+                                <td>维护培训</td>
+                                <td>20190823</td>
+                                <td></td>
+                                <td>
+                                    <a class="layui-btn layui-btn-radius layui-btn-xs" href="./培训资料/供配电培训/维护培训/A5-防雷系统维护操作流程培训.pptx">下载</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>高压供配电维护操作流程培训</td>
+                                <td>维护培训</td>
+                                <td>20190328</td>
+                                <td></td>
+                                <td>
+                                    <a class="layui-btn layui-btn-radius layui-btn-xs" href="./培训资料/供配电培训/维护培训/A5-高压供配电维护操作流程培训.pptx">下载</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>列头柜维护操作流程培训</td>
+                                <td>维护培训</td>
+                                <td>20190328</td>
+                                <td></td>
+                                <td>
+                                    <a class="layui-btn layui-btn-radius layui-btn-xs" href="./培训资料/供配电培训/维护培训/A5-列头柜维护操作流程培训.pptx">下载</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>配电柜维护保养培训</td>
+                                <td>维护培训</td>
+                                <td>20190309</td>
+                                <td></td>
+                                <td>
+                                    <a class="layui-btn layui-btn-radius layui-btn-xs" href="./培训资料/供配电培训/维护培训/A5-配电柜维护保养培训【20190309】.pptx">下载</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>ATS故障应急培训</td>
+                                <td>应急培训</td>
+                                <td>20190318</td>
+                                <td></td>
+                                <td>
+                                    <a class="layui-btn layui-btn-radius layui-btn-xs" href="./培训资料/供配电培训/应急培训/A5-ATS故障应急培训【20190318】.pptx">下载</a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>UPS故障应急培训</td>
+                                <td>应急培训</td>
+                                <td>20190412</td>
+                                <td></td>
+                                <td>
+                                    <a class="layui-btn layui-btn-radius layui-btn-xs" href="./培训资料/供配电培训/应急培训/A5-UPS故障应急培训课件模板【20190412】.pptx">下载</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>发电机故障应急培训</td>
+                                <td>应急培训</td>
+                                <td>20190408</td>
+                                <td></td>
+                                <td>
+                                    <a class="layui-btn layui-btn-radius layui-btn-xs" href="./培训资料/供配电培训/应急培训/A5-发电机故障应急培训课件【20190408】.pptx">下载</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>机柜单路断电应急培训</td>
+                                <td>应急培训</td>
+                                <td>20190412</td>
+                                <td></td>
+                                <td>
+                                    <a class="layui-btn layui-btn-radius layui-btn-xs" href="./培训资料/供配电培训/应急培训/A5-机柜单路断电应急培训 杨成军班【20190412】.pptx">下载</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>数据中心供电中断应急操作培训</td>
+                                <td>应急培训</td>
+                                <td>20190322</td>
+                                <td></td>
+                                <td>
+                                    <a class="layui-btn layui-btn-radius layui-btn-xs" href="./培训资料/供配电培训/应急培训/A5-数据中心供电中断应急操作培训课件【20190322】.pptx">下载</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="layui-tab-item">内容3</div>
+                <div class="layui-tab-item">内容4</div>
+            </div>
+        </div>
     </div>
 </body>
 

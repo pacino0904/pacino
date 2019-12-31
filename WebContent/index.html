@@ -7,8 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="renderer" content="webkit|ie-comp|ie-stand">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport"
-        content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
     <meta http-equiv="Cache-Control" content="no-siteapp" />
     <link rel="icon" href="./images/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="./css/font.css">
@@ -21,7 +20,9 @@
 <body>
     <!-- 顶部开始 -->
     <div class="container">
-        <div class="logo"><a href="./index.html"><img src="./images/title.png" alt="" style="float: left; margin-top:10px;width: 120px;"></a></div>
+        <div class="logo">
+            <a href="./index.html"><img src="./images/title.png" alt="" style="float: left; margin-top:10px;width: 120px;"></a>
+        </div>
         <div class="left_open">
             <i title="展开左侧栏" class="iconfont">&#xe699;</i>
         </div>
@@ -207,12 +208,6 @@
                                 <cite>通讯录</cite>
                             </a>
                         </li>
-                        <li>
-                            <a id="memberList" _href="noaccess.html">
-                                <i class="iconfont">&#xe6a7;</i>
-                                <cite>人员管理</cite>
-                            </a>
-                        </li>
                     </ul>
                 </li>
 
@@ -224,15 +219,15 @@
                     </a>
                     <ul class="sub-menu">
                         <li>
-                            <a _href="document.html">
+                            <a _href="./资料库/gzzd.html">
                                 <i class="iconfont">&#xe6a7;</i>
-                                <cite>文件发布</cite>
+                                <cite>规章制度</cite>
                             </a>
                         </li>
                         <li>
-                            <a _href="document.html">
+                            <a _href="./资料库/cybd.html">
                                 <i class="iconfont">&#xe6a7;</i>
-                                <cite>知识分享</cite>
+                                <cite>常用表单</cite>
                             </a>
                         </li>
                         <li>
@@ -242,15 +237,9 @@
                             </a>
                         </li>
                         <li>
-                            <a _href="member-list.html">
+                            <a _href="document.html">
                                 <i class="iconfont">&#xe6a7;</i>
-                                <cite>规章制度</cite>
-                            </a>
-                        </li>
-                        <li>
-                            <a _href="./资料库/cybd.html">
-                                <i class="iconfont">&#xe6a7;</i>
-                                <cite>常用表单</cite>
+                                <cite>知识分享</cite>
                             </a>
                         </li>
                     </ul>
@@ -279,20 +268,21 @@
     <!-- 底部开始 -->
 
     <!-- 底部结束 -->
-    
+
     <script>
-    	function getUsername(){
-    		var param = "";
-    		$.ajax({
-    			type:"POST",
-    			url:"/myproject/getUsername",
-    			data:param,
-    			dataType:"text",
-    			success:function(data){
-    				$("#username").html(data);
-    			}
-    		})
-    	}
+        function getUsername() {
+            var param = "";
+            $.ajax({
+                type: "POST",
+                url: "/myproject/getUsername",
+                data: param,
+                dataType: "text",
+                success: function(data) {
+                    $("#username").html(data);
+                }
+            })
+        }
     </script>
 </body>
+
 </html>
